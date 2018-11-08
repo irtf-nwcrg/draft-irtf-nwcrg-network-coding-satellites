@@ -107,6 +107,7 @@
 	<section anchor="subsec:intro_glossary" title="Glossary">
 	<t>The glossary of this memo is related to the network coding taxonomy document <xref target="RFC8406"> </xref>.</t> 
 	<t>The glossary is extended as follows:<list style="symbols">
+	<t>ACM : Adaptative Coding and Modulation;</t>
 	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical layer;</t>
         <t>CPE: Customer Premise Equipment;</t>
         <t>DTN: Delay/Disruption Tolerant Network;</t>
@@ -280,7 +281,7 @@
 	</section>	
 
        	<section anchor="subsec:hybrid" title="Hybrid access">
-	<t>This use-case considers the use of multiple path management with network coding at the transport level to increase the reliability and/or the total bandwidth (using multiple path does not guarantee an improvement of both the reliability and the total bandwidth). We propose an illustration for this scenario in <xref target="fig:hyb_access"></xref>. This use-case is inspired from the Broadband Access via Integrated Terrestrial Satellite Systems (BATS) project and has been published as an ETSI Technical Report <xref target="ETSITR2017"></xref>. It is worth nothing that this kind of architecture is also discussed in the MPTCP working group <xref target="I-D.boucadair-mptcp-dhc"></xref>.</t> 
+	<t>This use-case considers the use of multiple path management with network coding at the transport level to increase the reliability and/or the total capacity (using multiple path does not guarantee an improvement of both the reliability and the total bandwidth). We propose an illustration for this scenario in <xref target="fig:hyb_access"></xref>. This use-case is inspired from the Broadband Access via Integrated Terrestrial Satellite Systems (BATS) project and has been published as an ETSI Technical Report <xref target="ETSITR2017"></xref>. It is worth nothing that this kind of architecture is also discussed in the MPTCP working group <xref target="I-D.boucadair-mptcp-dhc"></xref>.</t> 
 	<t>To cope with packet loss (due to either end-user mobility or physical layer impairments), network coding could be introduced in both the CPE and at the concentrator.</t>
 
         <figure anchor="fig:hyb_access" title="Network architecture for an hybrid access using NC">
@@ -304,7 +305,7 @@
 
        	<section anchor="subsec:varying" title="Dealing with varying capacity">
 	<t>This use-case considers the usage of network coding to overcome cases where the wireless link characteristics quickly change overtime and where the physical layer codes could not be made robust in time. This is particularly relevant when end users are moving and the channel shows important variations <xref target="IEEEVT2001"></xref>.</t>
-	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. The network coding schemes could be applied at the access gateway or the network function block levels to increase the reliability of the transmission. This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g. very high frequency bands, mobile users) or depending on the deployment use-cases (e.g. performance of the network between each individual block), the relevance of adding network coding is different. Then, depending on the OSI level at which network coding is applied, the impact on the satellite terminal is different: network coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
+	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. In these cases, Adaptative Coding and Modulation (ACM) may not adapt the modulation and coding accordingly and remaining errors could be recovered with higher layers redundancy packets. The network coding schemes could be applied at the access gateway or the network function block levels to increase the reliability of the transmission. This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g. very high frequency bands, mobile users) or depending on the deployment use-cases (e.g. performance of the network between each individual block), the relevance of adding network coding is different. Then, depending on the OSI level at which network coding is applied, the impact on the satellite terminal is different: network coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
 
         <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics with NC">
         <artwork>
@@ -365,11 +366,11 @@ Recently, on-the-fly erasure coding schemes <xref target="LACAN08"></xref> <xref
         <section anchor="sec:deploy" title="Research challenges">
         
 	<section anchor="sec:deploy_deployability" title="Deployability in current SATCOM systems">
-	<t>SATCOM systems typically feature Performance Enhancement Proxy <xref target="RFC3135">RFC&nbsp;3135</xref> which could be relevant to host network coding mechanisms and thus support the use-cases that have been discussed in <xref target="sec:use_cases"></xref>. PEP usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer 2 and layer 1 encapsulations. Deploying network coding schemes at the TCP level in these equipments could be relevant and independant from the specificities of a SATCOM link. That being said, we can notice a research issue in the recurrent trade-off in SATCOM systems that is related to the amount of reliability that you introduce in the first transmission to guarantee a better end-user QoE and the usage of the scarce resource.</t>
+	<t>SATCOM systems typically feature Performance Enhancement Proxy <xref target="RFC3135">RFC&nbsp;3135</xref> which could be relevant to host network coding mechanisms and thus support the use-cases that have been discussed in <xref target="sec:use_cases"></xref>. PEP usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer 2 and layer 1 encapsulations. Deploying network coding schemes at the TCP level in these equipments could be relevant and independent from the specificities of a SATCOM link. That being said, we can notice a research issue in the recurrent trade-off in SATCOM systems that is related to the amount of reliability that you introduce in the first transmission to guarantee a better end-user QoE and the usage of the scarce resource.</t>
 	</section>
 	
-	<section anchor="sec:deploy_nfv" title="Interaction with NFV">
-	<t>Related to the foreseen virtualized network infrastructure, the network coding schemes could be proposed as VNF and their deployability enhanced. The architecture for the next generation of SATCOM ground segments would rely on a virtualized environment. This trend can also be seen, making the discussions on the deployability of network coding in SATCOM extendable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the network coding VNF functions deployment in a virtualized environment is presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>. A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, to guarantee an efficient radio resource utilization and easy to deploy SATCOM services.</t>
+	<section anchor="sec:deploy_nfv" title="Interaction with virtualization">
+	<t>Related to the foreseen virtualized network infrastructure, the network coding schemes could be proposed as Virtual Network Function (VNF) and their deployability enhanced. The architecture for the next generation of SATCOM ground segments would rely on a virtualized environment. This trend can also be seen, making the discussions on the deployability of network coding in SATCOM extendable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the network coding VNF functions deployment in a virtualized environment is presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>. A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, to guarantee an efficient radio resource utilization and easy to deploy SATCOM services.</t>
 	</section>
 
 	</section>
@@ -379,7 +380,7 @@ Recently, on-the-fly erasure coding schemes <xref target="LACAN08"></xref> <xref
         <!-- ######################################################-->      
         <section anchor="sec:conclu" title="Conclusion">
 
-        <t>This document presents presents the current deployment of network coding in some satellite telecommunications systems along with a discussion on the multiple opportunities to introduce these techniques at a wider scale.</t>
+        <t>This document presents the current deployment of network coding in some satellite telecommunications systems along with a discussion on the multiple opportunities to introduce these techniques at a wider scale.</t>
  
         <t>Even if this document focuses on satellite systems, it is worth pointing out that the some scenarios proposed may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped to cellular networks as follows: the 'network function' block gather some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this draft since they may be also relevant for cellular networks.</t>
        
@@ -392,11 +393,7 @@ Recently, on-the-fly erasure coding schemes <xref target="LACAN08"></xref> <xref
         <!-- ######################################################--> 
 
 	<section anchor="sec:acknowledgements" title="Acknowledgements">
-	<t>Many thanks to Tomaso de Cola, Vincent Roca and Marie-Jose Montpetit.</t>
-	</section>
-
-	<section anchor="sec:contributors" title="Contributors">
-	<t>Tomaso de Cola, Marie-Jose Montpetit.</t>
+	<t>Many thanks to Tomaso de Cola, Vincent Roca, Lloyd Wood and Marie-Jose Montpetit for their help in writting this document.</t>
 	</section>
 
 	<section anchor="sec:IANA" title="IANA Considerations">
