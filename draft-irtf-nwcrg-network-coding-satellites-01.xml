@@ -100,7 +100,7 @@
 	<section anchor="sec:introduction" title="Introduction">
         <t>Guaranteeing both physical layer robustness and efficient usage of the radio resource has been in the core design of SATellite COMmunication (SATCOM) systems. The trade-off often resided in how much redundancy a system had to add to cope from link impairments, without reducing the good-put when the channel quality is high. Generally speaking, enough redundancy is added so as to guarantee a Quasi-Error Free transmission; however, there are cases where the physical layer could hardly recover the transmission losses (e.g. with a mobile user) and layer 2 (or above) re-transmissions induce an at least 500 ms delay with a geostationary satellite. Further exploiting network coding schemes at higher OSI-layers is an opportunity for releasing constraints on the physical layer and improving the performance of SATCOM systems when the physical layer is challenged.</t> 
 	<t>We have noticed an active research activity on network coding and SATCOM in the past. That being said, not much has actually made it to industrial developments. In this context, this memo aims at identifying opportunities for further usage of network coding in these systems.</t>
-	<t>This document follows the taxonomy of coding techniques for efficient network communications <xref target="RFC8406">RFC&nbsp;8406</xref></t>.	
+	<t>This document follows the taxonomy of coding techniques for efficient network communications <xref target="RFC8406"></xref></t>.	
 		
 	<section anchor="subsec:intro_glossary" title="Glossary">
 	<t>The glossary of this memo is related to the network coding taxonomy document <xref target="RFC8406"> </xref>.</t> 
@@ -193,10 +193,11 @@
         <!-- New section -->
         <!-- ######################################################-->
         
-        <section anchor="sec:existing_network_coding" title="Status of network coding in actually deployed satellite systems">
-	<t><xref target="fig:existing_network"></xref> presents the status of the network coding deployment in satellite systems. The information is based on the taxonomy document <xref target="RFC8406"> </xref> and the notations are the following: End-to-End Coding (E2E), Network Coding (NC), Intra-Flow Coding (IntraF), Inter-Flow Coding (InterF), Single-Path Coding (SP)  and Multi-Path Coding (MP).</t>
-        <t>X1 embodies the source coding that could be used at application level for instance: for video streaming on a broadband access. X2 embodies the physical layer, applied to the PLFRAME, to optimize the satellite capacity usage. Furthermore, at the physical layer and when random accesses are exploited, FEC mechanisms are exploited. It is worth pointing out that NC is an inherent part of the physical layer of satellite systems, but based on public information, NC does not seem to be widely used at higher OSI layers.</t>
-	<figure anchor="fig:existing_network" title="Network coding in current satellite systems">
+        <section anchor="sec:existing_network_coding" title="Status of reliability schemes in actually deployed satellite systems">
+	<t><xref target="fig:existing_network"></xref> presents the status of the reliability schemes deployment in satellite systems. The information is based on the taxonomy document <xref target="RFC8406"> </xref> and the notations are the following: End-to-End Coding (E2E), Network Coding (NC), Intra-Flow Coding (IntraF), Inter-Flow Coding (InterF), Single-Path Coding (SP)  and Multi-Path Coding (MP).</t>
+        <t>X1 embodies the source coding that could be used at application level for instance within QUIC or other video streaming applications: this is not specific to SATCOM systems, but is relevant for broadband Internet access discussions.</t>
+	<t>X2 embodies the physical layer, applied to the PLFRAME, to optimize the satellite capacity usage: at the physical and access layers, FEC mechanisms can be exploited. This aspect is not in the scope of the WG according to the taxonomoy document <xref target="RFC8406"> </xref>.</t>
+	<figure anchor="fig:existing_network" title="Reliability schemes in current satellite systems">
         <artwork>
 +------+-------+---------+---------------+-------+
 |      | Upper | Middle  | Communication layers  |
@@ -214,7 +215,8 @@
 +------+-------+---------+---------------+-------+
 	</artwork>
         </figure>
-
+	<t>Reliability is an inherent part of the physical and MAC layers and usually achieved by using coding techniques. Based on public information, coding does not seem to be widely used at higher OSI layers, others than application layers.</t>
+		
 	</section>
 
         <!-- ######################################################-->
