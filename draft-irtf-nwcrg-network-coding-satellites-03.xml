@@ -253,9 +253,11 @@
 	</section>	
 
        	<section anchor="subsec:rel-mul" title="Reliable multicast">
-	<t>This use-case considers adding redundancy to a multicast flow depending on what has been received by different end-users, resulting in non-negligible scarce resource saving. We propose an illustration for this scenario in <xref target="fig:rel_multi"></xref>.</t>
+
+	<t>Using multi-cast servers is a way to better exploit the satellite broadcast capabilities. This is the approach proposed in the SHINE ESA project <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref> <xref target="SHINE"> </xref>. This use-case considers adding redundancy to a multicast flow depending on what has been received by different end-users, resulting in non-negligible scarce resource saving. We propose an illustration for this scenario in <xref target="fig:rel_multi"></xref>.</t>
 
 	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (resp. Nj) get lost at terminal A (resp. B), and terminal A (resp. B) returns a negative acknowledgement Li (resp. Lj), indicating that the packet is missing. Then either the access gateway or the multicast server includes a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses. This could be achieved by using NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> in situations where a feedback is possible and desirable, or FLUTE/ALC <xref target ="RFC6726"></xref> when it is not the case. Note that currently both NORM nor FLUTE/ALC are limited to block coding, none of them supporting sliding window encoding schemes <xref target="RFC8406"></xref>.</t> 
+
 
         <figure anchor="fig:rel_multi" title="Network architecture for a reliable multicast with NC">
         <artwork>
@@ -446,6 +448,19 @@
                     </front>
                     <seriesInfo name="ETSI TR" value="103 351" />
                 </reference>
+
+                <reference anchor="SHINE">
+                    <front>
+                    <title>Secure Hybrid In Network caching Environment (SHINE) ESA project</title>
+                    <author initials="S" surname="Pietro Romano">
+		    </author>
+                    <author initials="et" surname="al.">
+		    </author>
+                    <date year="2017 on-going" />
+                    </front>
+                    <seriesInfo name="ESA project" value="" />
+                </reference>
+
                 <reference anchor="ASMS2010">
                     <front>
                     <title>Demonstration at opening session of ASMS 2010</title>
@@ -457,6 +472,7 @@
                     </front>
                     <seriesInfo name="ASMS" value="" />
                 </reference>
+
                 <reference anchor="IEEEVT2001">
                     <front>
                     <title>Statistical modeling of the LMS channel</title>
