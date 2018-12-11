@@ -57,7 +57,7 @@
       </address>
     </author>
 
-    <date month="Nov" year="2018" />
+    <date month="Dec" year="2018" />
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
@@ -434,18 +434,18 @@
 	<references title="Informative References">
 		<?rfc include="reference.RFC.3135.xml"?> 
 		<?rfc include="reference.RFC.4838.xml"?> 
-		<?rfc include="reference.RFC.5050.xml"?> 
+		<!-- <?rfc include="reference.RFC.5050.xml"?> -->
 		<?rfc include="reference.RFC.5326.xml"?> 
 		<?rfc include="reference.RFC.5740.xml"?> 
 		<!-- <?rfc include="reference.RFC.5865.xml"?> -->  
-		<?rfc include="reference.RFC.6816.xml"?> 
+		<!-- <?rfc include="reference.RFC.6816.xml"?> -->
 		<?rfc include="reference.RFC.6726.xml"?>
         	<?rfc include="reference.I-D.ietf-tcpm-converters"?>
         	<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>
         	<?rfc include="reference.RFC.8406.xml"?>
         	<?rfc include="reference.I-D.vazquez-nfvrg-netcod-function-virtualization.xml"?>
-        	<?rfc include="reference.I-D.zinky-dtnrg-random-binary-fec-scheme.xml"?>
-		<?rfc include="reference.I-D.zinky-dtnrg-erasure-coding-extension.xml"?>
+        	<!-- <?rfc include="reference.I-D.zinky-dtnrg-random-binary-fec-scheme.xml"?> -->
+		<!-- <?rfc include="reference.I-D.zinky-dtnrg-erasure-coding-extension.xml"?> -->
                 <reference anchor="ETSITR2017">
                     <front>
                     <title>Satellite Earth Stations and Systems (SES); Multi-link routing scheme in hybrid access network with heterogeneous links </title>
@@ -480,7 +480,7 @@
                     <seriesInfo name="ASMS" value="" />
                 </reference>
 
-                <reference anchor="IEEEVT2001">
+                <!-- <reference anchor="IEEEVT2001">
                     <front>
                     <title>Statistical modeling of the LMS channel</title>
                     <author initials="F.P" surname="Fontan">
@@ -496,7 +496,7 @@
                     <date year="2001" />
                     </front>
                     <seriesInfo name="BEER Transactions on Vehicular Technology" value="vol. 50 issue 6" />
-                </reference>
+                </reference> -->
 
                 <reference anchor="CCSDS-131.5-O-1">
                     <front>
@@ -527,7 +527,7 @@
                     </front>
                     <seriesInfo name="Int. J. Satell. Commun. Network." value="vol. 36" />
                 </reference>
-                <reference anchor="WANG05">
+                <!-- <reference anchor="WANG05">
 		    <front>
 		    <title>Erasure-coding based routing for opportunistic networks</title>
 		    <author initials="Y" surname="Wang">
@@ -537,8 +537,8 @@
                     <date year="2005" />
                     </front>
                     <seriesInfo name="Proceedings of the ACM SIGCOMM workshop on Delay-tolerant networking" value=""/>
-                </reference>
-                <reference anchor="ZHANG06">
+                </reference> -->
+                <!-- <reference anchor="ZHANG06">
 		    <front>
 		    <title>On the benefits of random linear coding for unicast applications in disruption tolerant networks</title>
 		    <author initials="X" surname="Zhang">
@@ -549,7 +549,8 @@
                     </front>
                     <seriesInfo name="Proceedings of the 4th International Symposium on Modeling and Optimization in Mobile, Ad Hoc and Wireless Networks" value=""/>
                 </reference>
-                <reference anchor="TOURNOUX10">
+                -->
+		<!-- <reference anchor="TOURNOUX10">
 		    <front>
 		    <title>On the benefits of random linear coding for unicast applications in disruption tolerant networks</title>
 		    <author initials="P" surname="Tournoux">
@@ -563,8 +564,8 @@
                     <date year="2010" />
                     </front>
                     <seriesInfo name="Proceedings of the IEEE International Conference on Communications" value=""/>
-                </reference>
-                <reference anchor="COLA11">
+                </reference> -->
+                <!-- <reference anchor="COLA11">
                     <front>
 		    <title>Reliability options for data communications in the future deep-space missions</title>
                     <author initials="T" surname="De Cola">
@@ -578,8 +579,8 @@
                     <date year="2011" />
                     </front>
                     <seriesInfo name="Proceedings of the IEEE" value="vol. 99 issue 11"/>
-                </reference>
-                <reference anchor="CCSDS-FDP">
+                </reference> -->
+                <!-- <reference anchor="CCSDS-FDP">
                     <front>
                     <title>CCSDS File Delivery Protocol, Recommendation for Space Data System Standards</title>
                     <author initials="" surname="">
@@ -587,8 +588,8 @@
                     <date year="2007" />
                     </front>
                     <seriesInfo name="CCSDS 727.0-B-4, Blue Book" value="num. 3" />
-                </reference>
-                <reference anchor="LACAN08">
+                </reference> -->
+                <!-- <reference anchor="LACAN08">
                      <front>
                      <title>Rethinking reliability for long-delay networks</title>
                      <author initials="J." surname="Lacan">
@@ -598,8 +599,8 @@
                      <date month="October" year="2008"/>
                      </front>
                      <seriesInfo name="International Workshop on Satellite and Space Communications" value=""/>
-        	</reference>
-                <reference anchor="SUNDARARAJAN08">
+        	</reference> -->
+                <!-- <reference anchor="SUNDARARAJAN08">
                      <front>
                      <title>ARQ for network coding</title>
                      <author initials="J." surname="Sundararajan">
@@ -611,8 +612,9 @@
                      <date month="July" year="2008"/>
                      </front>
                      <seriesInfo name="IEEE Int. Symp. on Information Theory" value=""/>
-        	</reference>
-                <reference anchor="TOURNOUX11">
+        	</reference> -->
+                
+		<!-- <reference anchor="TOURNOUX11">
                      <front>
                      <title>On-the-fly erasure coding for real-time video applications</title>
 		     <author initials="P" surname="Tournoux">
@@ -628,7 +630,7 @@
                      <date month="August" year="2011"/>
                      </front>
                      <seriesInfo name="IEEE Trans. on Multimedia" value="vol. 13 issue 4"/>
-        	</reference>
+        	</reference> -->
                 <reference anchor="THAI15">
                      <front>
                      <title>Enabling E2E reliable communications with adaptive re-encoding over delay tolerant networks</title>
