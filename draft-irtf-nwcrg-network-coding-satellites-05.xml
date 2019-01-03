@@ -91,7 +91,7 @@
         <!-- ######################################################--> 
 
     <abstract>
-    <t>This memo details a multi-gateway satellite system to identify multiple opportunities on how coding techniques could be deployed at a wider scale.</t>
+    <t>This memo details a multi-gateway satellite system to identify multiple opportunities on how network coding techniques could be deployed at a wider scale.</t>
     </abstract>
   </front>
 
@@ -102,7 +102,6 @@
 	<t>We have noticed an active research activity on coding and SATCOM in the past. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of coding in these systems.</t>
 	<t>This document follows the taxonomy of coding techniques for efficient network communications <xref target="RFC8406"> </xref>.</t>	
 		
-	<section anchor="subsec:intro_glossary" title="Glossary">
 	<t>The glossary of this memo extends the glossary of the taxonomy document <xref target="RFC8406"> </xref> as follows:<list style="symbols">
 	<t>ACM : Adaptative Coding and Modulation;</t>
 	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical-layer;</t>
@@ -127,8 +126,7 @@
         <t>SATCOM: generic term related to all kind of SATellite COMmunication systems;</t>
 	<t>VNF: Virtual Network Function.</t>
 	</list></t>	
-	</section>
-
+	
 	<!-- <section anchor="subsec:intro_requi" title="Requirements Language">
 	<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC&nbsp;2119</xref>.</t>
 	</section> -->
@@ -202,7 +200,7 @@
         <!-- New section -->
         <!-- ######################################################-->
         
-        <section anchor="sec:existing_network_coding" title="Actual deployment of reliability schemes in satellite systems">
+        <section anchor="sec:existing_network_coding" title="Scope of the document">
 	<t>The notations used in this section are based on the taxonomy document <xref target="RFC8406"> </xref>: End-to-End Coding (E2E), Network Coding (NC), Intra-Flow Coding (IntraF), Inter-Flow Coding (InterF), Single-Path Coding (SPC) and Multi-Path Coding (MPC). This document refers to coding as both End-to-End Coding and Network Coding, to cover cases where where recoding operation at intermediate nodes are or not. From the UDP/IP packetization to the channel coding, link layer coding is required so that the physical-layer knows what coding scheme to use. Following the taxonomy document <xref target="RFC8406"> </xref>, channel and link codings are gathered in the PHY layer coding and are out of the scope of this document.</t>
 	<t><xref target="fig:existing_network"></xref> presents the status of the reliability schemes deployment in satellite systems.<list style="symbols">
 		<t>X1 embodies the source coding that could be used at application level for instance within QUIC or other video streaming applications. This is not specific to SATCOM systems since such deployment can be relevant for broadband Internet access discussions.</t>
@@ -228,6 +226,7 @@
 	</artwork>
         </figure>
 	<t>Reliability is an inherent part of the physical-layer and usually achieved by using coding techniques. Based on public information, coding does not seem to be widely used at higher layers.</t>
+	<t>This memo presents use-cases where network coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
 		
 	</section>
 
@@ -235,7 +234,7 @@
         <!-- New section -->
         <!-- ######################################################-->
         
-        <section anchor="sec:use_cases" title="Details on the use cases">
+        <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with network coding">
 
         <t>This section details use-cases where coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
         <t>It is worth noting that these use-cases mostly focus on the middleware and packetization UDP/IP of <xref target="fig:existing_network"></xref>. There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
