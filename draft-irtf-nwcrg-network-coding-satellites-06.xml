@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
+]>
+<?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
+<?rfc strict="yes" ?>
+<?rfc toc="yes"?>
+<?rfc tocdepth="4"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes" ?>
+<?rfc compact="yes" ?>
+<?rfc subcompact="no" ?>
+<rfc 
+	category="info" 
+        docName="draft-irtf-nwcrg-network-coding-satellites-06"
+	ipr="trust200902">
+  <!-- category values: std, bcp, info, exp, and historic
+     ipr values: full3667, noModification3667, noDerivatives3667
+     you can add the attributes updates="NNNN" and obsoletes="NNNN" 
+     they will automatically be output with "(if approved)" -->
+
+  <!-- ***** FRONT MATTER ***** -->
+
+  <front>
+    <!-- The abbreviated title is used in the page header - it is only necessary if the 
+         full title is longer than 39 characters -->
+
+    <title abbrev="Network coding and satellites">Network coding and satellites</title>
+   
+    <author role="editor" fullname="Nicolas Kuhn" initials="N" surname="Kuhn">
+      <organization>CNES</organization>
+      <address>
+        <postal>
+          <street>18 Avenue Edouard Belin</street>
+          <city>Toulouse</city>
+          <region></region>
+          <code>31400</code>
+          <country>France</country>
+        </postal>
+        <phone></phone>
+        <email>nicolas.kuhn@cnes.fr</email>
+      </address>
+    </author>
+   
+    <author role="editor" fullname="Emmanuel Lochin" initials="E" surname="Lochin">
+      <organization>ISAE-SUPAERO</organization>
+      <address>
+        <postal>
+          <street>10 Avenue Edouard Belin</street>
+          <city>Toulouse</city>
+          <region></region>
+          <code>31400</code>
+          <country>France</country>
+        </postal>
+        <phone></phone>
+        <email>emmanuel.lochin@isae-supaero.fr</email>
+      </address>
+    </author>
+
+    <date month="June" year="2019" />
+
+    <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
+         in the current day for you. If only the current year is specified, xml2rfc will fill 
+	 in the current day and month for you. If the year is not the current one, it is 
+	 necessary to specify at least a month (xml2rfc assumes day="1" if not specified for the 
+	 purpose of calculating the expiry date).  With drafts it is normally sufficient to 
+	 specify just the year. -->
+
+    <!-- Meta-data Declarations -->
+
+    <area>Transport</area>
+
+    <workgroup>Internet Engineering Task Force</workgroup>
+
+    <!-- WG name at the upperleft corner of the doc,
+         IETF is fine for individual submissions.  
+	 If this element is not present, the default is "Network Working Group",
+         which is used by the RFC Editor as a nod to the history of the IETF. -->
+
+    <keyword>SATCOM, network coding</keyword>
+
+    <!-- Keywords will be incorporated into HTML output
+         files in a meta tag but they have no effect on text or nroff
+         output. If you submit your draft to the RFC Editor, the
+         keywords will be used for the search engine. -->
+
+        <!-- ######################################################-->
+        <!-- ######################################################-->
+        <!-- Head of the document -->
+        <!-- ######################################################--> 
+        <!-- ######################################################--> 
+
+    <abstract>
+    <t>This memo details a multi-gateway satellite system to identify multiple opportunities on how network coding techniques could be deployed at a wider scale.</t>
+    </abstract>
+  </front>
+
+  <middle>
+
+	<section anchor="sec:introduction" title="Introduction">
+        <t>Guaranteeing both physical-layer robustness and efficient usage of the radio resource has been in the core design of SATellite COMmunication (SATCOM) systems. The trade-off often resided in how much redundancy a system adds to cope from link impairments, without reducing the good-put when the channel quality is high. There is usually enough redundancy to guarantee a Quasi-Error Free transmission. However, physical layer reliability mechanisms may not recover transmission losses (e.g. with a mobile user) and layer 2 (or above) re-transmissions induce 500 ms one-way delay with a geostationary satellite. Further exploiting coding schemes at higher OSI-layers is an opportunity for releasing constraints on the physical layer in such cases and improving the performance of SATCOM systems.</t> 
+	<t>We have noticed an active research activity on coding and SATCOM in the past. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of coding in these systems.</t>
+	<t>This document follows the taxonomy of coding techniques for efficient network communications <xref target="RFC8406"> </xref>.</t>	
+		
+	<t>The glossary of this memo extends the glossary of the taxonomy document <xref target="RFC8406"> </xref> as follows:<list style="symbols">
+	<t>ACM : Adaptative Coding and Modulation;</t>
+	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical-layer;</t>
+        <t>CPE: Customer Premise Equipment;</t>
+        <t>COM: COMmunication;</t>
+	<t>DSL: Digital Subscriber Line;</t>
+        <t>DTN: Delay/Disruption Tolerant Network;</t>
+        <t>ETSI: European Telecommunications Standards Institute;</t>
+	<t>FEC: Forward Erasure Correction;</t>
+	<t>FLUTE: File Delivery over Unidirectional Transport;</t>
+	<t>IoT: Internet of Things;</t>
+	<t>LTE: Long Term Evolution;</t> 
+        <t>NFV: Network Function Virtualization;</t>
+	<t>NORM: NACK-Oriented Reliable Multicast;</t>
+        <t>PEP: Performance Enhanced Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
+	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g. related to synchronization);</t>
+	<t>QEF: Quasi-Error-Free;</t>        
+	<t>QoE: Quality-of-Experience;</t>
+        <t>QoS: Quality-of-Service;</t>
+	<t>SAT: SATellite; </t>
+        <!--<t>EPC: Evolved Packet Core;</t>-->
+        <t>SATCOM: generic term related to all kind of SATellite COMmunication systems;</t>
+	<t>VNF: Virtual Network Function.</t>
+	</list></t>	
+	
+	<!-- <section anchor="subsec:intro_requi" title="Requirements Language">
+	<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC&nbsp;2119</xref>.</t>
+	</section> -->
+	
+	</section>
+
+        <!-- ######################################################-->
+        <!-- ######################################################-->
+        <!-- Body of the document -->
+        <!-- ######################################################--> 
+        <!-- ######################################################--> 
+
+        <!-- ######################################################-->
+        <!-- New section -->
+        <!-- ######################################################-->
+        
+        <section anchor="sec:sat_topo" title="A note on satellite topology">
+        <t>This section describes the components in satellite system that lays on SATCOM systems dedicated to broadband Internet access that follows the DVB standards. A high-level description of a multi-gateway satellites network is provided. There are multiple SATCOM systems, such as those dedicated to broadcasting TV or to IoT applications: depending on the purpose of the SATCOM system, ground segments are specific. In this context, the increase of the available capacity that is carried out to end users and reliability requirements lead to multiple gateways for one unique satellite platform.</t>
+        <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. In a multi-gateway system, some elements may be centralized and/or gathered: the relevance of one approach compared to another depends on the deployment scenario. More information on these discussions and a generic SATCOM ground segment architecture for a bi-directional Internet access can be found in <xref target="SAT2017"></xref>.</t> 
+        <t>Some functional blocks aggregate the traffic of multiple users. Coding schemes could be applied on both single and aggregated traffic.</t>
+
+	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system">
+        <artwork> 
++---------------------+ 
+| application servers | 
++---------------------+  
+       ^     ^   
+       | ... |   
+       -----------------------------------
+       v     v   v             v   v     v
++------------------+         +------------------+ 
+| network function |         | network function | 
+| (firewall, PEP)  |         | (firewall, PEP)  | 
++------------------+         +------------------+ 
+    ^     ^                        ^        ^
+    | ... | IP packets             |  ...   |
+    v     v                        v        v
++------------------+         +------------------+ 
+| access gateway   |         | access gateway   |
++------------------+         +------------------+ 
+       ^                                 ^
+       | BBFRAME                         |
+       v                                 v
++------------------+         +------------------+ 
+| physical gateway |         | physical gateway |
++------------------+         +------------------+
+       ^                                 ^
+       | PLFRAME                         |
+       v                                 v
++------------------+         +------------------+ 
+| outdoor unit     |         | outdoor unit     |
++------------------+         +------------------+
+       ^                                 ^
+       | satellite link                  |
+       v                                 v
++------------------+         +------------------+ 
+| sat terminals    |         | sat terminals    |
++------------------+         +------------------+
+       ^     ^                  ^     ^
+       | ... |                  | ... |
+       v     v                  v     v
++------------------+         +------------------+ 
+| end user         |         | end user         |
++------------------+         +------------------+
+	</artwork>
+        </figure>
+
+	</section>
+
+        <!-- ######################################################-->
+        <!-- New section -->
+        <!-- ######################################################-->
+        
+        <section anchor="sec:existing_network_coding" title="Scope of the document">
+	<t>The notations used in this section are based on the taxonomy document <xref target="RFC8406"> </xref>: End-to-End Coding (E2E), Network Coding (NC), Intra-Flow Coding (IntraF), Inter-Flow Coding (InterF), Single-Path Coding (SPC) and Multi-Path Coding (MPC). This document refers to coding as both End-to-End Coding and Network Coding, to cover cases where where recoding operation at intermediate nodes are or not. From the UDP/IP packetization to the channel coding, link layer coding is required so that the physical-layer knows what coding scheme to use. Following the taxonomy document <xref target="RFC8406"> </xref>, channel and link codings are gathered in the PHY layer coding and are out of the scope of this document.</t>
+	<t><xref target="fig:existing_network"></xref> presents the status of the reliability schemes deployment in satellite systems.<list style="symbols">
+		<t>X1 embodies the source coding that could be used at application level for instance within QUIC or other video streaming applications. This is not specific to SATCOM systems since such deployment can be relevant for broadband Internet access discussions.</t>
+		<t>X2 embodies the physical-layer, applied to the PLFRAME, to optimize the satellite capacity usage. At the physical layer, FEC mechanisms can be exploited.</t>
+        </list></t>
+
+	<figure anchor="fig:existing_network" title="Reliability schemes in current satellite systems">
+        <artwork>
++------+-------+---------+---------------+-------+
+|      | Upper | Middle  | Communication layers  |
+|      | Appl. | ware    |                       |
++      +-------+---------+---------------+-------+
+|      |Source | Network | Packetization | PHY   |
+|      |coding | AL-FEC  | UDP/IP        | layer |
++------+-------+---------+---------------+-------+
+|E2E   |   X1  |         |               |       |
+|NC    |       |         |               |       |
+|IntraF|   X1  |         |               |       |
+|InterF|       |         |               |   X2  |
+|SPC   |   X1  |         |               |   X2  |
+|MPC   |       |         |               |       |
++------+-------+---------+---------------+-------+
+	</artwork>
+        </figure>
+	<t>Reliability is an inherent part of the physical-layer and usually achieved by using coding techniques. Based on public information, coding does not seem to be widely used at higher layers.</t>
+	<t>This memo presents use-cases where network coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
+		
+	</section>
+
+        <!-- ######################################################-->
+        <!-- New section -->
+        <!-- ######################################################-->
+        
+        <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with network coding">
+
+        <t>This section details use-cases where coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
+        <t>It is worth noting that these use-cases mostly focus on the middleware and packetization UDP/IP of <xref target="fig:existing_network"></xref>. There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
+
+       	<section anchor="subsec:two-way" title="Two-way relay channel mode">
+	<t>This use-case considers a two-way communication between end users, through a satellite link. <xref target="fig:two_way"></xref> proposes an illustration of this scenario.</t>
+        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a NC server. The NC server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. Moreover, with On-Board Processing satellite payloads, the coding operations could be done at the satellite level.</t>
+        <figure anchor="fig:two_way" title="Network architecture for two way relay channel with NC">
+        <artwork>
+-X}-   : traffic from satellite terminal X to the server
+={X+Y= : traffic from X and Y combined sent from 
+            the server to terminals X and Y  
+
++-----------+        +-----+                
+|Sat term A |--A}-+  |     |                           
++-----------+     |  |     |      +---------+      +------+
+    ^^            +--|     |--A}--|         |--A}--|      |
+    ||               | SAT |--B}--| Gateway |--B}--|Server|
+    ===={A+B=========|     |={A+B=|         |={A+B=|      |
+    ||               |     |      +---------+      +------+
+    vv            +--|     |                           
++-----------+     |  |     |                           
+|Sat term B |--B}-+  |     |                
++-----------+        +-----+                
+        </artwork>
+        </figure>
+
+	</section>	
+
+       	<section anchor="subsec:rel-mul" title="Reliable multicast">
+
+	<t>Using multicast servers is a way to better exploit the satellite broadcast capabilities. This approach is proposed in the SHINE ESA project <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref> <xref target="SHINE"> </xref>. This use-case considers adding redundancy to a multicast flow depending on what has been received by different end-users, resulting in non-negligible scarce resource saving. We propose an illustration for this scenario in <xref target="fig:rel_multi"></xref>.</t>
+
+	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (resp. Nj) get lost at terminal A (resp. B), and terminal A (resp. B) returns a negative acknowledgment Li (resp. Lj), indicating that the packet is missing. Then either the access gateway or the multicast server includes a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses. This could be achieved by using NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> in situations where a feedback link is available, or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref> otherwise. Note that both NORM and FLUTE are limited to block coding, none of them supporting sliding window encoding schemes <xref target="RFC8406"></xref>.</t> 
+
+
+        <figure anchor="fig:rel_multi" title="Network architecture for a reliable multicast with NC">
+        <artwork>
+-Li}- : packet indicating the loss of packet i of a multicast flow M
+={M== : multicast flow including the missing packets
+
++-----------+       +-----+                
+|Sat term A |-Li}-+ |     |                           
++-----------+     | |     |      +---------+  +------+
+    ^^            +-|     |-Li}--|         |  |Multi |
+    ||              | SAT |-Lj}--| Gateway |--|Cast  |
+    ===={M==========|     |={M===|         |  |Server|
+    ||              |     |      +---------+  +------+
+    vv            +-|     |                           
++-----------+     | |     |                           
+|Sat term B |-Lj}-+ |     |                
++-----------+       +-----+
+        </artwork>
+        </figure>
+
+	</section>	
+
+       	<section anchor="subsec:hybrid" title="Hybrid access">
+	<t>This use-case considers the use of multiple path management with coding at the transport level to increase the reliability and/or the total capacity (using multiple path does not guarantee an improvement of both the reliability and the total capacity). We propose an illustration for this scenario in <xref target="fig:hyb_access"></xref>. This use-case is inspired from the Broadband Access via Integrated Terrestrial Satellite Systems (BATS) project and has been published as an ETSI Technical Report <xref target="ETSITR2017"></xref>. This kind of architecture is also discussed in the TCPM working group <xref target="I-D.ietf-tcpm-converters"></xref>.</t> 
+	<t>To cope with packet loss (due to either end-user mobility or physical-layer impairments), coding could be introduced in both the CPE and at the concentrator.</t>
+
+        <figure anchor="fig:hyb_access" title="Network architecture for an hybrid access using NC">
+        <artwork>
+-{}- : bidirectional link
+
+                             +-----+    +----------------+
+                        +-{}-| SAT |-{}-| BACKBONE       |
++------+    +------+    |    +-----+    | +------------+ | 
+| End  |-{}-| CPE  |-{}-|               | |CONCENTRATOR| |
+| User |    |      |    |    +-----+    | +------------+ |    +------+
++------+    +------+    |-{}-| DSL |-{}-|                |-{}-|Data  |
+                        |    +-----+    |                |    |Server|
+                        |               |                |    +------+
+                        |    +-----+    |                |
+                        +-{}-| LTE |-{}-|                |
+                             +-----+    +----------------+
+        </artwork>
+        </figure>
+	</section>	
+
+       	<section anchor="subsec:varying" title="Dealing with varying capacity">
+	<t>This use-case considers the usage of coding to cope with cases where channel condition can change in less than a second and where the physical-layer codes could not guarantee a Quasi-Error-Free (QEF) transmission.</t>
+	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. In these cases, Adaptative Coding and Modulation (ACM) may not adapt the modulation and coding accordingly and remaining errors could be recovered with higher layers redundancy packets. The coding schemes could be applied at the access gateway or the network function block levels to increase the reliability of the transmission. Coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
+	<t>This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical-layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g. very high frequency bands, mobile users) or depending on the deployment use-cases (e.g. performance of the network between each individual block), the relevance of adding coding is different.</t>
+
+        <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics with NC">
+        <artwork>
+-{}- : bidirectional link
+
++---------+    +---+    +--------+    +-------+    +--------+
+|Satellite|    |SAT|    |Physical|    |Access |    |Network |
+|Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
++---------+    +---+    +--------+    +-------+    +--------+
+     NC                      NC           NC          NC 
+        </artwork>
+        </figure>
+	</section>	
+
+       	<section anchor="subsec:gat_hand" title="Improving the gateway handovers">
+	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, if gateways are not properly synchronized, this may result in packet loss. During these critical phases, coding can be added to improve the reliability of the transmission and allow a seamless gateway handover. Coding could be applied at either the access gateway or the network function block. The control plane manager is in charge of taking the decision to change the communication gateway and the consequent routes.</t>
+	<t><xref target="fig:gat_hand"></xref> illustrates this use-case. Depending on the ground architecture <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"></xref> <xref target="SAT2017"></xref>, some equipment might be communalised.</t>
+
+        <figure anchor="fig:gat_hand" title="Network architecture for dealing with gateway handover schemes with NC">
+        <artwork>
+-{}- : bidirectional link
+!   : management interface
+                                       NC            NC
+                      +--------+    +-------+    +--------+
+                      |Physical|    |Access |    |Network |
+                 +-{}-|gateway |-{}-|gateway|-{}-|function| 
+                 |    +--------+    +-------+    +--------+
+                 |                        !       !
++---------+    +---+              +---------------+
+|Satellite|    |SAT|              | Control plane |
+|Terminal |-{}-|   |              | manager       |
++---------+    +---+              +---------------+
+                 |                        !       !
+                 |    +--------+    +-------+    +--------+
+                 +-{}-|Physical|-{}-|Access |-{}-|Network |
+                      |gateway |    |gateway|    |function| 
+                      +--------+    +-------+    +--------+
+                                       NC            NC
+        </artwork>
+        </figure>
+	</section>
+	
+</section>
+
+        <!-- ######################################################-->
+        <!-- New section -->
+        <!-- ######################################################-->
+        
+        <section anchor="sec:deploy" title="Research challenges">
+        
+	<section anchor="sec:deploy_deployability" title="Towards an increased deployability in SATCOM systems">
+	<t>SATCOM systems typically feature Performance Enhancement Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEP usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulations. PEP could host coding mechanisms and thus support the use-cases that have been discussed in this document.</t>
+	<t>Deploying coding schemes at the TCP level in these equipment could be relevant and independent from the specific characteristics of a SATCOM link. However, there is a research issue in the recurrent trade-off in SATCOM systems: how much overhead from redundant reliability packets can be introduced to guarantee a better end-user QoE while optimizing capacity usage ?</t>
+	</section>
+	
+	<section anchor="sec:deploy_nfv" title="Interaction with virtualization">
+	<t>Related to the foreseen virtualized network infrastructure, coding schemes could be easily deployed as VNF. Next generation of SATCOM ground segments could rely on a virtualized environment. This trend can also be seen in cellular networks, making these discussions extendable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the coding VNF functions deployment in a virtualized environment is presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>.</t>
+	<t>A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, to guarantee an efficient radio usage and easy-to-deploy SATCOM services.</t>
+	</section>
+
+	<section anchor="subsec:dtn" title="Delay/Disruption Tolerant Networks">
+<!--	<t>In the context of deep-space communications, establishing communications from terrestrial gateways to satellite platforms can be a challenge. Indeed, reliable end-to-end (E2E) communications over such links must cope with long delay and frequent link disruptions. Delay/Disruption Tolerant Networking <xref target="RFC4838"></xref> is a solution to enable reliable internetworking space communications where both standard ad-hoc routing and E2E Internet protocols cannot be used. The transport of data over such networks requires the use of replication, erasure codes and multipath protocol schemes <xref target="WANG05"></xref> <xref target="ZHANG06"></xref> to improve the bundle delivery ratio and/or delivery delay. For instance, transport protocols such as LTP <xref target="RFC5326"></xref> for long delay links with connectivity disruptions, use Automatic Repeat-reQuest (ARQ) and unequal error protection to reduce the amount of non-mandatory re-transmissions. The work in <xref target="TOURNOUX10"></xref> proposed upon LTP a robust streaming method based on an on-the-fly coding scheme, where encoding and decoding procedures are done at the source and destination nodes, respectively. However, each link path loss rate may have various order of magnitude and re-encoding at an intermediate node to adapt the redundancy can be mandatory to prevent transmission wasting. This idea has been put forward in <xref target="I-D.zinky-dtnrg-random-binary-fec-scheme"></xref> and <xref target="I-D.zinky-dtnrg-erasure-coding-extension"></xref>, where the authors proposed an encoding process at intermediate DTN nodes to explore the possibilities of Forward Error Correction (FEC) schemes inside the bundle protocol <xref target="RFC5050"></xref>. In this context, the use of erasure coding inside a Consultative Committee for Space Data Systems (CCSDS) architecture has been specified in <xref target="CCSDS-131.5-O-1"></xref>.</t> -->
+
+	<t>In the context of the deep-space communications, establishing communications from terrestrial gateways to satellite platforms can be a challenge. Reliable end-to-end (E2E) communications over such links must cope with long delay and frequent link disruptions. Delay/Disruption Tolerant Networking <xref target="RFC4838"></xref> is a solution to enable reliable internetworking space communications where both standard ad-hoc routing and E2E Internet protocols cannot be used. Moreover, DTN can also be seen as an alternative solution to transfer the data between a central PEP and a remote PEP.</t>
+	<t>Coding enables E2E reliable communication over DTN with adaptive re-encoding, as proposed in <xref target="THAI15"></xref>. In this case, the use-cases proposed in <xref target="subsec:varying"></xref> would legitimate the usage of coding within the DTN stack to improve the channel utilization and the E2E transmission delay. In this context, the use of erasure coding inside a Consultative Committee for Space Data Systems (CCSDS) architecture has been specified in <xref target="CCSDS-131.5-O-1"></xref>. A research challenge would be on how such coding can be integrated in the IETF DTN stack.</t>
+
+<!-- The objective is to extend the CCSDS File Delivery Protocol (CFDP) <xref target="CCSDS-FDP"></xref> with erasure coding capabilities where a Low Density Parity Check (LDPC) <xref target="RFC6816"></xref> code with a large block size is chosen. Recently, on-the-fly erasure coding schemes <xref target="LACAN08"></xref> <xref target="SUNDARARAJAN08"></xref> <xref target="TOURNOUX11"></xref> have shown their benefits in terms of recovery capability and configuration complexity compared to traditional FEC schemes. Using a feedback path when available, on-the-fly schemes can be used to enable E2E reliable communication over DTN with adaptive re-encoding as proposed in <xref target="THAI15"></xref>. -->
+
+	</section>	
+
+
+
+	</section>
+
+        <!-- ######################################################-->
+        <!-- New section -->
+        <!-- ######################################################-->      
+        <section anchor="sec:conclu" title="Conclusion">
+
+        <t>This document discuses some opportunities to introduce these techniques at a wider scale in satellite telecommunications systems.</t>
+ 
+        <t>Even though this document focuses on satellite systems, it is worth pointing out that the some scenarios proposed may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped to cellular networks as follows: the 'network function' block gather some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this draft since they may be also relevant for cellular networks.</t>
+       
+	</section>
+
+        <!-- ######################################################-->
+        <!-- ######################################################-->
+        <!-- Tail of the document -->
+        <!-- ######################################################--> 
+        <!-- ######################################################--> 
+
+	<section anchor="sec:acknowledgements" title="Acknowledgements">
+	<t>Many thanks to Tomaso de Cola, Vincent Roca, Lloyd Wood and Marie-Jose Montpetit for their help in writing this document.</t>
+	</section>
+
+	<section anchor="sec:IANA" title="IANA Considerations">
+	<t>This memo includes no request to IANA.</t>
+	</section>
+
+	<section anchor="sec:ecurity" title="Security Considerations">
+	<t>Security considerations are inherent to any access network. SATCOM systems introduce standard security mechanisms. On the specific scenario of NC in SATCOM systems, there are no specific security considerations.<!--See <xref target="RFC3552">RFC 3552</xref> for a guide.--></t>
+	</section>
+	</middle>
+
+	<!--  *****BACK MATTER ***** -->
+	<back>
+	<!-- References split into informative and normative -->
+	<!-- There are 2 ways to insert reference entries from the citation libraries:
+	1. define an ENTITY at the top, and use "ampersand character"RFC2629; here (as shown)
+	2. simply use a PI "less than character"?rfc include="reference.RFC.2119.xml"?> here
+	(for I-Ds: include="reference.I-D.narten-iana-considerations-rfc2434bis.xml")
+	Both are cited textually in the same manner: by using xref elements.
+	If you use the PI option, xml2rfc will, by default, try to find included files in the same
+	directory as the including file. You can also define the XML_LIBRARY environment variable
+	with a value containing a set of directories to search.  These can be either in the local
+	filing system or remote ones accessed by http (http://domain/dir/... ).-->
+
+	<!-- <references title="Normative References">
+		&RFC2119;
+	</references> -->
+
+	<references title="Informative References">
+		<?rfc include="reference.RFC.3135.xml"?> 
+		<?rfc include="reference.RFC.4838.xml"?> 
+		<!-- <?rfc include="reference.RFC.5050.xml"?> -->
+		<?rfc include="reference.RFC.5326.xml"?> 
+		<?rfc include="reference.RFC.5740.xml"?> 
+		<!-- <?rfc include="reference.RFC.5865.xml"?> -->  
+		<!-- <?rfc include="reference.RFC.6816.xml"?> -->
+		<?rfc include="reference.RFC.6726.xml"?>
+        	<?rfc include="reference.I-D.ietf-tcpm-converters"?>
+        	<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>
+        	<?rfc include="reference.RFC.8406.xml"?>
+        	<?rfc include="reference.I-D.vazquez-nfvrg-netcod-function-virtualization.xml"?>
+        	<!-- <?rfc include="reference.I-D.zinky-dtnrg-random-binary-fec-scheme.xml"?> -->
+		<!-- <?rfc include="reference.I-D.zinky-dtnrg-erasure-coding-extension.xml"?> -->
+                <reference anchor="ETSITR2017">
+                    <front>
+                    <title>Satellite Earth Stations and Systems (SES); Multi-link routing scheme in hybrid access network with heterogeneous links </title>
+                    <author initials="" surname="">
+                    </author>
+                    <date year="2017" />
+                    </front>
+                    <seriesInfo name="ETSI TR" value="103 351" />
+                </reference>
+
+                <reference anchor="SHINE">
+                    <front>
+                    <title>Secure Hybrid In Network caching Environment (SHINE) ESA project</title>
+                    <author initials="S" surname="Pietro Romano">
+		    </author>
+                    <author initials="et" surname="al.">
+		    </author>
+                    <date year="2017 on-going" />
+                    </front>
+                    <seriesInfo name="ESA project" value="" />
+                </reference>
+
+                <reference anchor="ASMS2010">
+                    <front>
+                    <title>Demonstration at opening session of ASMS 2010</title>
+                    <author initials="T" surname="De Cola">
+		    </author>
+                    <author initials="et" surname="al.">
+		    </author>
+                    <date year="2010" />
+                    </front>
+                    <seriesInfo name="ASMS" value="" />
+                </reference>
+
+                <!-- <reference anchor="IEEEVT2001">
+                    <front>
+                    <title>Statistical modeling of the LMS channel</title>
+                    <author initials="F.P" surname="Fontan">
+                    </author>
+                    <author initials="M" surname="Vazquez-Castro">
+                    </author>
+                    <author initials="C.E" surname="Cabado">
+                    </author>
+                    <author initials="J.P" surname="Garcia">
+                    </author>
+                    <author initials="E" surname="Kubista">
+                    </author>
+                    <date year="2001" />
+                    </front>
+                    <seriesInfo name="BEER Transactions on Vehicular Technology" value="vol. 50 issue 6" />
+                </reference> -->
+
+                <reference anchor="CCSDS-131.5-O-1">
+                    <front>
+                    <title>Erasure correcting codes for use in near-earth and deep-space communications</title>
+                    <author surname="CCSDS">
+                    </author>
+                    <date year="2014" />
+                    </front>
+                    <seriesInfo name="CCSDS Experimental specification" value="131.5-0-1" />
+                </reference>
+
+                <reference anchor="SAT2017">
+                    <front>
+                    <title>Software-defined satellite cloud RAN</title>
+                    <author initials="T" surname="Ahmed">
+                    </author>
+                    <author initials="E" surname="Dubois">
+                    </author>
+                    <author initials="JB" surname="Dupe">
+                    </author>
+                    <author initials="R" surname="Ferrus">
+                    </author>
+                    <author initials="P" surname="Gelard">
+                    </author>
+                    <author initials="N" surname="Kuhn">
+                    </author>
+                    <date year="2017" />
+                    </front>
+                    <seriesInfo name="Int. J. Satell. Commun. Network." value="vol. 36" />
+                </reference>
+                <!-- <reference anchor="WANG05">
+		    <front>
+		    <title>Erasure-coding based routing for opportunistic networks</title>
+		    <author initials="Y" surname="Wang">
+		    </author>
+                    <author initials="et" surname="al.">
+		    </author>
+                    <date year="2005" />
+                    </front>
+                    <seriesInfo name="Proceedings of the ACM SIGCOMM workshop on Delay-tolerant networking" value=""/>
+                </reference> -->
+                <!-- <reference anchor="ZHANG06">
+		    <front>
+		    <title>On the benefits of random linear coding for unicast applications in disruption tolerant networks</title>
+		    <author initials="X" surname="Zhang">
+		    </author>
+                    <author initials="et" surname="al.">
+		    </author>
+                    <date year="2006" />
+                    </front>
+                    <seriesInfo name="Proceedings of the 4th International Symposium on Modeling and Optimization in Mobile, Ad Hoc and Wireless Networks" value=""/>
+                </reference>
+                -->
+		<!-- <reference anchor="TOURNOUX10">
+		    <front>
+		    <title>On the benefits of random linear coding for unicast applications in disruption tolerant networks</title>
+		    <author initials="P" surname="Tournoux">
+		    </author>
+                    <author initials="E" surname="Lochin">
+		    </author>
+                    <author initials="J" surname="Leguay">
+		    </author>
+                    <author initials="J" surname="Lacan">
+		    </author>
+                    <date year="2010" />
+                    </front>
+                    <seriesInfo name="Proceedings of the IEEE International Conference on Communications" value=""/>
+                </reference> -->
+                <!-- <reference anchor="COLA11">
+                    <front>
+		    <title>Reliability options for data communications in the future deep-space missions</title>
+                    <author initials="T" surname="De Cola">
+                    </author>
+                    <author initials="E" surname="Paolini">
+                    </author>
+                    <author initials="G" surname="Liva">
+                    </author>
+                    <author initials="G" surname="Calzolari">
+                    </author>
+                    <date year="2011" />
+                    </front>
+                    <seriesInfo name="Proceedings of the IEEE" value="vol. 99 issue 11"/>
+                </reference> -->
+                <!-- <reference anchor="CCSDS-FDP">
+                    <front>
+                    <title>CCSDS File Delivery Protocol, Recommendation for Space Data System Standards</title>
+                    <author initials="" surname="">
+                    </author>
+                    <date year="2007" />
+                    </front>
+                    <seriesInfo name="CCSDS 727.0-B-4, Blue Book" value="num. 3" />
+                </reference> -->
+                <!-- <reference anchor="LACAN08">
+                     <front>
+                     <title>Rethinking reliability for long-delay networks</title>
+                     <author initials="J." surname="Lacan">
+                     </author>
+                     <author initials="E." surname="Lochin">
+                     </author>
+                     <date month="October" year="2008"/>
+                     </front>
+                     <seriesInfo name="International Workshop on Satellite and Space Communications" value=""/>
+        	</reference> -->
+                <!-- <reference anchor="SUNDARARAJAN08">
+                     <front>
+                     <title>ARQ for network coding</title>
+                     <author initials="J." surname="Sundararajan">
+                     </author>
+                     <author initials="D." surname="Shah">
+                     </author>
+                     <author initials="M." surname="Medard">
+                     </author>
+                     <date month="July" year="2008"/>
+                     </front>
+                     <seriesInfo name="IEEE Int. Symp. on Information Theory" value=""/>
+        	</reference> -->
+                
+		<!-- <reference anchor="TOURNOUX11">
+                     <front>
+                     <title>On-the-fly erasure coding for real-time video applications</title>
+		     <author initials="P" surname="Tournoux">
+                     </author>
+                     <author initials="E." surname="Lochin">
+                     </author>
+                     <author initials="J." surname="Lacan">
+                     </author>
+                     <author initials="A." surname="Bouabdallah">
+                     </author>
+                     <author initials="V." surname="Roca">
+                     </author>
+                     <date month="August" year="2011"/>
+                     </front>
+                     <seriesInfo name="IEEE Trans. on Multimedia" value="vol. 13 issue 4"/>
+        	</reference> -->
+                <reference anchor="THAI15">
+                     <front>
+                     <title>Enabling E2E reliable communications with adaptive re-encoding over delay tolerant networks</title>
+		     <author initials="T" surname="Thai">
+                     </author>
+                     <author initials="V." surname="Chaganti">
+                     </author>
+                     <author initials="E." surname="Lochin">
+                     </author>
+                     <author initials="J." surname="Lacan">
+                     </author>
+                     <author initials="E." surname="Dubois">
+                     </author>
+                     <author initials="P." surname="Gelard">
+                     </author>
+                     <date month="June" year="2015"/>
+                     </front>
+                     <seriesInfo name="Proceedings of the IEEE International Conference on Communications" value=""/>
+        	</reference>
+                
+       	</references>
+	</back>
+</rfc>
