@@ -374,9 +374,9 @@
 	<t>Deploying coding schemes at the TCP level in these equipment could be relevant and independent from the specific characteristics of a SATCOM link. However, there is a research issue in the recurrent trade-off in SATCOM systems: how much overhead from redundant reliability packets can be introduced to guarantee a better end-user QoE while optimizing capacity usage ?</t>
 	</section>
 	
-	<section anchor="sec:deploy_nfv" title="Interaction with virtualization">
+	<section anchor="sec:deploy_nfv" title="Interaction with virtualized satellite gateways and terminals">
 	<t>Related to the foreseen virtualized network infrastructure, coding schemes could be easily deployed as VNF. Next generation of SATCOM ground segments could rely on a virtualized environment. This trend can also be seen in cellular networks, making these discussions extendable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the coding VNF functions deployment in a virtualized environment is presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>.</t>
-	<t>A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, to guarantee an efficient radio usage and easy-to-deploy SATCOM services.</t>
+	<t>A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, to guarantee an efficient radio usage and easy-to-deploy SATCOM services. Moreover, another challenge related to a virtualized SATCOM terminals is the management of limited buffered equipments.</t>
 	</section>
 
 	<section anchor="subsec:dtn" title="Delay/Disruption Tolerant Networks">
