@@ -180,9 +180,10 @@
 
 	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system">
         <artwork> 
-+---------------------+ 
-| application servers | 
-+---------------------+  
++--------------------------+ 
+| application servers      |
+| (data, coding, multicast |
++--------------------------+  
        ^     ^   
        | ... |   
        -----------------------------------
@@ -193,17 +194,17 @@
 +------------------+         +------------------+ 
     ^     ^                        ^        ^
     | ... | IP packets             |  ...   |
-    v     v                        v        v
-+------------------+         +------------------+ 
-| access gateway   |         | access gateway   |
-+------------------+         +------------------+ 
-       ^                                 ^
-       | BBFRAME                         |
-       v                                 v
-+------------------+         +------------------+ 
-| physical gateway |         | physical gateway |
-+------------------+         +------------------+
-       ^                                 ^
+    v     v                        v        v   ---
++------------------+         +------------------+ |
+| access gateway   |         | access gateway   | |
++------------------+         +------------------+ |
+       ^                                 ^        |
+       | BBFRAME                         |        | gateway
+       v                                 v        |
++------------------+         +------------------+ |
+| physical gateway |         | physical gateway | |
++------------------+         +------------------+ |
+       ^                                 ^      ---
        | PLFRAME                         |
        v                                 v
 +------------------+         +------------------+ 
@@ -232,12 +233,12 @@
         
         <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with coding techniques">
 
-        <t>This section details use-cases where coding techniques could improve the overall performance of a SATCOM system (e.g., considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
+        <t>This section details use-cases where coding techniques could provide interesting features for SATCOM systems.</t>
         <t>It is worth noting that these use-cases mostly focus on the middleware and packetization UDP/IP of <xref target="fig:existing_network"></xref>. There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
 
        	<section anchor="subsec:two-way" title="Two-way relay channel mode">
 	<t>This use-case considers a two-way communication between end users, through a satellite link. <xref target="fig:two_way"></xref> proposes an illustration of this scenario.</t>
-        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a NC server. The NC server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. Moreover, with On-Board Processing satellite payloads, the coding operations could be done at the satellite level.</t>
+        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a coding server. The coding server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. In the proposed example, a dedicated coding server is introduced. Its location could be changed depending on the deployment use-case. With On-Board Processing satellite payloads, the coding operations could be done at the satellite level; although this would require lots of computationnal ressource on-board and may not be relevant with today's payloads.</t>
         <figure anchor="fig:two_way" title="Network architecture for two way relay channel with NC">
         <artwork>
 -X}-   : traffic from satellite terminal X to the server
@@ -247,7 +248,7 @@
 +-----------+        +-----+                
 |Sat term A |--A}-+  |     |                           
 +-----------+     |  |     |      +---------+      +------+
-    ^^            +--|     |--A}--|         |--A}--|      |
+    ^^            +--|     |--A}--|         |--A}--|Coding|
     ||               | SAT |--B}--| Gateway |--B}--|Server|
     ===={A+B=========|     |={A+B=|         |={A+B=|      |
     ||               |     |      +---------+      +------+
@@ -283,13 +284,14 @@
         </artwork>
         </figure>
 
-	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (resp. Nj) gets lost at terminal A (resp. B), and terminal A (resp. B) returns a negative acknowledgment Li (resp. Lj), indicating that the packet is missing. Then either the access gateway or the multicast server includes a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses. This could be achieved by using NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> in situations where a feedback link is available, or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref> otherwise. Note that both NORM and FLUTE are limited to block coding, none of them supporting sliding window encoding schemes <xref target="RFC8406"></xref>. Note that although FLUTE is defined as an unidirectional protocol, the RFC proposes a bidirectional communication method to enable full reliability transfer and for security purpose.</t> 
+	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (resp. Nj) gets lost at terminal A (resp. B), and terminal A (resp. B) returns a negative acknowledgment Li (resp. Lj), indicating that the packet is missing. Then either the access gateway or the multicast server includes a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses.</t>
+	<t>This could be achieved by using other multicast or broadcast systems, such as NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> in situations where a feedback link is available, or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref> otherwise. Note that both NORM and FLUTE are limited to block coding, none of them supporting sliding window encoding schemes <xref target="RFC8406"></xref>. Note that although FLUTE is defined as an unidirectional protocol, the RFC proposes a bidirectional communication method to enable full reliability transfer and for security purpose.</t> 
 
 	</section>	
 
        	<section anchor="subsec:hybrid" title="Hybrid access">
 	<t>This use-case considers the use of multiple path management with coding at the transport level to increase the reliability and/or the total capacity (using multiple path does not guarantee an improvement of both the reliability and the total capacity). We propose an illustration for this scenario in <xref target="fig:hyb_access"></xref>. This use-case is inspired from the Broadband Access via Integrated Terrestrial Satellite Systems (BATS) project and has been published as an ETSI Technical Report <xref target="ETSITR2017"></xref>. This kind of architecture is also discussed in the TCPM working group <xref target="I-D.ietf-tcpm-converters"></xref>.</t> 
-	<t>To cope with packet loss (due to either end-user mobility or physical-layer impairments), coding techniques could be introduced both at the CPE and at the concentrator.</t>
+	<t>To cope with packet loss (due to either end-user mobility or physical-layer impairments), coding techniques could be introduced both at the CPE and at the concentrator. Appart from packet losses, other gains could be envisionned, such as a better tolerance to out-of-order packets which occur when exploited links exhibit high asymetry in terms of RTT. Depending on the ground architecture <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"></xref> <xref target="SAT2017"></xref>, some equipments might be hosting both SATCOM and cellular functions.</t>
 
         <figure anchor="fig:hyb_access" title="Network architecture for an hybrid access using coding">
         <artwork>
@@ -299,10 +301,10 @@
                         +-{}-| SAT |-{}-| BACKBONE       |
 +------+    +------+    |    +-----+    | +------------+ | 
 | End  |-{}-| CPE  |-{}-|               | |CONCENTRATOR| |
-| User |    |      |    |    +-----+    | +------------+ |    +------+
-+------+    +------+    |-{}-| DSL |-{}-|                |-{}-|Data  |
-                        |    +-----+    |                |    |Server|
-                        |               |                |    +------+
+| User |    |      |    |    +-----+    | +------------+ |    +------------+
++------+    +------+    |-{}-| DSL |-{}-|                |-{}-|Application |
+                        |    +-----+    |                |    |Server      |
+                        |               |                |    +------------+
                         |    +-----+    |                |
                         +-{}-| LTE |-{}-|                |
                              +-----+    +----------------+
@@ -310,12 +312,31 @@
         </figure>
 	</section>	
 
-       	<section anchor="subsec:varying" title="Dealing with varying capacity">
-	<t>This use-case considers the usage of coding techniques to cope with cases where channel condition can change in less than a second and where the physical-layer codes could not guarantee a Quasi-Error-Free (QEF) transmission.</t>
-	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. In these cases, Adaptative Coding and Modulation (ACM) may not adapt the modulation and coding accordingly and remaining errors could be recovered with higher layers redundancy packets. The coding schemes could be applied at the access gateway or the network function block levels to increase the reliability of the transmission. Coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
-	<t>This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical-layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding coding techniques is different.</t>
+       	<section anchor="subsec:varying" title="Dealing with LAN losses">
+	<t>This use-case considers the usage of coding techniques to cope from cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user.</t>
+	<t>The architecture is recalled in <xref target="fig:varying_wifi-loss"></xref>.</t>
+	<t>In this use-case, adding coding techniques could prevent the end-to-end retransmission from occuring.</t>
 
-        <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics with NC">
+        <figure anchor="fig:varying_wifi-loss" title="Network architecture for dealing with LAN losses">
+        <artwork>
+-{}- : bidirectional link
+-''- : Wi-Fi link
+		
++---------+    +---------+    +---+    +--------+    +-------+    +--------+
+|         |    |Satellite|    |SAT|    |Physical|    |Access |    |Network |
+|End user |-''-|Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
++---------+    +---------+    +---+    +--------+    +-------+    +--------+
+     C                       C            C           C 
+        </artwork>
+        </figure>
+	</section>
+		
+       	<section anchor="subsec:varying" title="Dealing with varying channel conditions">
+	<t>This use-case considers the usage of coding techniques to cope from cases where channel condition can change in less than a second and where the physical-layer codes could not guarantee a Quasi-Error-Free (QEF) transmission.</t>
+	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. In these cases, the mechanisms that is exploited to adapt the physical-layer codes (Adaptative Coding and Modulation (ACM)) may adapt the modulation and coding in time: remaining errors could be recovered with higher layers redundancy packets. Coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
+	<t>This use-case is mostly relevant when mobile users are considered or when the chosen band induce a required physical-layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding coding techniques is different.</t>
+
+        <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics">
         <artwork>
 -{}- : bidirectional link
 
@@ -323,20 +344,20 @@
 |Satellite|    |SAT|    |Physical|    |Access |    |Network |
 |Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
 +---------+    +---+    +--------+    +-------+    +--------+
-     NC                      NC           NC          NC 
+     C                       C            C           C 
         </artwork>
         </figure>
-	</section>	
+	</section>
 
        	<section anchor="subsec:gat_hand" title="Improving the gateway handovers">
-	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, if gateways are not properly synchronized, this may result in packet loss. During these critical phases, coding can be added to improve the reliability of the transmission and allow a seamless gateway handover. Coding could be applied at either the access gateway or the network function block. The control plane manager is in charge of taking the decision to change the communication gateway and the consequent routes.</t>
-	<t><xref target="fig:gat_hand"></xref> illustrates this use-case. Depending on the ground architecture <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"></xref> <xref target="SAT2017"></xref>, some equipment might be communalised.</t>
+	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, if gateways are not properly synchronized or if the algorithm that is exploited to trigger gateway handovers shows a non negligible probability of missed detection, this may result in packet losses. During these critical phases, coding can be added to improve the reliability of the transmission and allow a seamless gateway handover. Coding could be applied at either the access gateway or the network function block. The control plane manager is in charge of taking the decision to change the communication gateway and the consequent routes.</t>
+	<t><xref target="fig:gat_hand"></xref> illustrates this use-case.</t>
 
-        <figure anchor="fig:gat_hand" title="Network architecture for dealing with gateway handover schemes with NC">
+        <figure anchor="fig:gat_hand" title="Network architecture for dealing with gateway handover schemes">
         <artwork>
 -{}- : bidirectional link
 !   : management interface
-                                       NC            NC
+                                        C             C
                       +--------+    +-------+    +--------+
                       |Physical|    |Access |    |Network |
                  +-{}-|gateway |-{}-|gateway|-{}-|function| 
@@ -351,7 +372,7 @@
                  +-{}-|Physical|-{}-|Access |-{}-|Network |
                       |gateway |    |gateway|    |function| 
                       +--------+    +-------+    +--------+
-                                       NC            NC
+                                        C             C
         </artwork>
         </figure>
 	</section>
@@ -374,6 +395,7 @@
 		
 	<section anchor="sec:deploy_coding" title="On the efficient usage of satellite ressource">
 	<t>The recurrent trade-off in SATCOM systems remains: how much overhead from redundant reliability packets can be introduced to guarantee a better end-user QoE while optimizing capacity usage ?</t>
+	<t>This problem has been tackled in the past for physical-layer code, but there remains questions on how to adapt the overhead for, e.g., the quickly varying channel conditions use-case.</t>
 	</section>
 		
 	<section anchor="sec:deploy_nfv" title="Interaction with virtualized satellite gateways and terminals">
