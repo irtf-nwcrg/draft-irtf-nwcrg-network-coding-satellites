@@ -147,7 +147,7 @@
         <t>NFV: Network Function Virtualization;</t>
 	<t>NORM: NACK-Oriented Reliable Multicast;</t>
         <t>PEP: Performance Enhancing Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
-	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g. related to synchronization);</t>
+	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g., related to synchronization);</t>
 	<t>QEF: Quasi-Error-Free;</t>        
 	<t>QoE: Quality-of-Experience;</t>
         <t>QoS: Quality-of-Service;</t>
@@ -160,7 +160,7 @@
 	<!-- <section anchor="subsec:intro_requi" title="Requirements Language">
 	<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC&nbsp;2119</xref>.</t>
 	</section> -->
-	
+	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); it is not an IETF product and is not a standard.</t>
 	</section>
 
         <!-- ######################################################-->
@@ -232,7 +232,7 @@
         
         <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with coding techniques">
 
-        <t>This section details use-cases where coding techniques could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
+        <t>This section details use-cases where coding techniques could improve the overall performance of a SATCOM system (e.g., considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t>
         <t>It is worth noting that these use-cases mostly focus on the middleware and packetization UDP/IP of <xref target="fig:existing_network"></xref>. There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
 
        	<section anchor="subsec:two-way" title="Two-way relay channel mode">
@@ -313,7 +313,7 @@
        	<section anchor="subsec:varying" title="Dealing with varying capacity">
 	<t>This use-case considers the usage of coding techniques to cope with cases where channel condition can change in less than a second and where the physical-layer codes could not guarantee a Quasi-Error-Free (QEF) transmission.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. In these cases, Adaptative Coding and Modulation (ACM) may not adapt the modulation and coding accordingly and remaining errors could be recovered with higher layers redundancy packets. The coding schemes could be applied at the access gateway or the network function block levels to increase the reliability of the transmission. Coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
-	<t>This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical-layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g. very high frequency bands, mobile users) or depending on the deployment use-cases (e.g. performance of the network between each individual block), the relevance of adding coding techniques is different.</t>
+	<t>This use-case is mostly relevant for when mobile users are considered or when the chosen band induce a required physical-layer coding that may change over time (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding coding techniques is different.</t>
 
         <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics with NC">
         <artwork>
