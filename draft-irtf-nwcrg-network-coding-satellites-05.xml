@@ -312,7 +312,7 @@
         </figure>
 	</section>	
 
-       	<section anchor="subsec:varying" title="Dealing with LAN losses">
+       	<section anchor="subsec:varying_wifi" title="Dealing with LAN losses">
 	<t>This use-case considers the usage of coding techniques to cope from cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_wifi-loss"></xref>.</t>
 	<t>In this use-case, adding coding techniques could prevent the end-to-end retransmission from occuring.</t>
