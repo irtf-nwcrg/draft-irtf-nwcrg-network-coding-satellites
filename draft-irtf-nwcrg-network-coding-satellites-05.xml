@@ -105,7 +105,7 @@
 		<t>This document considers coding (or coding techniques or coding schemes) as a linear combination and not as a content coding (e.g., to compress a video flow).</t>
 	</list></t>
 	<t><xref target="fig:existing_network"></xref> presents the status of the reliability schemes deployment in satellite systems.<list style="symbols">
-		<t>X1 embodies the source coding techniques that could be used at application level for instance within QUIC or other video streaming applications. This is not specific to SATCOM systems since such deployment can be relevant for broadband Internet access discussions.</t>
+		<t>X1 embodies the source coding techniques that could be used at application level for instance within QUIC. This is not specific to SATCOM systems since such deployment can be relevant for broadband Internet access discussions.</t>
 		<t>X2 embodies the physical-layer techniques exploited in SATCOM systems (note that other coding techniques can be exploited). This is out of the scope of the document.</t>
         </list></t>
 
