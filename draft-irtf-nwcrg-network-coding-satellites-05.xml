@@ -385,7 +385,7 @@
         
         <section anchor="sec:deploy" title="Research challenges">
         
-	This section proposes to discuss few research challenges related to the introduction and the use of coding techniques in SATCOM systems.
+	<t>This section proposes to discuss few research challenges related to the introduction and the use of coding techniques in SATCOM systems.</t>
 		
 	<section anchor="sec:deploy_pep" title="On the joint-use of coding techniques and congestion control in SATCOM systems">
 	<t>SATCOM systems typically feature Performance Enhancement Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEP usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulations. PEP contributes to mitigate congestion in a SATCOM systems. PEP could host coding mechanisms and thus support use-cases that have been discussed in this document.</t>
