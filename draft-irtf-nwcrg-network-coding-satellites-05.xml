@@ -91,7 +91,7 @@
         <!-- ######################################################--> 
 
     <abstract>
-    <t>This memo details a multi-gateway satellite system to identify multiple opportunities on how coding techniques could be deployed at a wider scale.</t>
+    <t>This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). This document follows the taxonomy document <xref target="RFC8406"> </xref> and considers coding as a linear combination of packets that operate above the network layer. In this context, this memo details a multi-gateway satellite system to identify use-cases where coding is relevant. As example, coding operating above the network layer can be exploited to cope from residual losses or provide reliable multicast services. The objective is to contribute to a larger deployment of such techniques in SATCOM systems. This memo also identifies open research issues related to the deployment of coding in SATCOM systems, such as the interaction between congestion controls and coding techniques.</t>
     </abstract>
   </front>
 
