@@ -400,7 +400,7 @@
         <!-- ######################################################-->      
         <section anchor="sec:conclu" title="Conclusion">
 
-        <t>This document discuses some opportunities to introduce these techniques at a wider scale in satellite telecommunications systems.</t>
+        <t>This document discuses some opportunities to introduce coding techniques at a wider scale in satellite telecommunications systems.</t>
  
         <t>Even though this document focuses on satellite systems, it is worth pointing out that some scenarios proposed may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped to cellular networks as follows: the 'network function' block gather some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this draft since they may be also relevant for cellular networks.</t>
        
