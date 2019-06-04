@@ -419,7 +419,7 @@
 	</section>
 
 	<section anchor="sec:ecurity" title="Security Considerations">
-	<t>Security considerations are inherent to any access network. SATCOM systems introduce standard security mechanisms. On the specific scenario of NC in SATCOM systems, there are no specific security considerations.<!--See <xref target="RFC3552">RFC 3552</xref> for a guide.--></t>
+	<t>Security considerations are inherent to any access network, and in particular SATCOM systems. The use of FEC or Network Coding in SATCOM also comes with risks (e.g., a single corrupted redundant packet may propagate to several flows when they are protected togething in an Inter-Flow coding approach, see section <xref target="sec:use_cases"></xref>). However this is not specific to the SATCOM use-case and this document does not further elaborate on it.</t>
 	</section>
 	</middle>
 
