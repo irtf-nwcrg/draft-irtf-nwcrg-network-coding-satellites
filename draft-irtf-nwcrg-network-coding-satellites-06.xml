@@ -103,20 +103,20 @@
 	<t>This document follows the taxonomy of coding techniques for efficient network communications <xref target="RFC8406"> </xref>.</t>	
 		
 	<t>The glossary of this memo extends the glossary of the taxonomy document <xref target="RFC8406"> </xref> as follows:<list style="symbols">
-	<t>ACM : Adaptative Coding and Modulation;</t>
+	<t>ACM : Adaptive Coding and Modulation;</t>
 	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical-layer;</t>
-        <t>CPE: Customer Premise Equipment;</t>
+        <t>CPE: Customer Premises Equipment;</t>
         <t>COM: COMmunication;</t>
 	<t>DSL: Digital Subscriber Line;</t>
         <t>DTN: Delay/Disruption Tolerant Network;</t>
         <t>ETSI: European Telecommunications Standards Institute;</t>
-	<t>FEC: Forward Erasure Correction;</t>
+	<t>FEC: Forward Error Correction;</t>
 	<t>FLUTE: File Delivery over Unidirectional Transport;</t>
 	<t>IoT: Internet of Things;</t>
 	<t>LTE: Long Term Evolution;</t> 
         <t>NFV: Network Function Virtualization;</t>
 	<t>NORM: NACK-Oriented Reliable Multicast;</t>
-        <t>PEP: Performance Enhanced Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
+        <t>PEP: Performance Enhancing Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
 	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g. related to synchronization);</t>
 	<t>QEF: Quasi-Error-Free;</t>        
 	<t>QoE: Quality-of-Experience;</t>
