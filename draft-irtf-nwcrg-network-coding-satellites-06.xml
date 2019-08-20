@@ -321,6 +321,7 @@
         <artwork>
 -{}- : bidirectional link
 -''- : Wi-Fi link
+C : where coding techniques could be introduced 
 		
 +---------+    +---------+    +---+    +--------+    +-------+    +--------+
 |         |    |Satellite|    |SAT|    |Physical|    |Access |    |Network |
