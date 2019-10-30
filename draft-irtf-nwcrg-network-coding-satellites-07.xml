@@ -520,7 +520,7 @@ C : where coding techniques could be introduced
 		    </author>
                     <date year="2010" />
                     </front>
-                    <seriesInfo name="ASMS" value="" />
+                    <seriesInfo name="Advanced Satellite Multimedia Systems (ASMS) Conference" value="" />
                 </reference>
 
                 <!-- <reference anchor="IEEEVT2001">
@@ -568,7 +568,7 @@ C : where coding techniques could be introduced
                     </author>
                     <date year="2017" />
                     </front>
-                    <seriesInfo name="Int. J. Satell. Commun. Network." value="vol. 36" />
+                    <seriesInfo name="International Journal on Satellite Communnications and Networking" value="vol. 36" />
                 </reference>
                 <!-- <reference anchor="WANG05">
 		    <front>
