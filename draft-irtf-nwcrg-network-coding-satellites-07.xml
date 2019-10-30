@@ -98,6 +98,7 @@
   <middle>
 
 	<section anchor="sec:introduction" title="Introduction">
+	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); it is not an IETF product and is not a standard. A glossary is proposed in <xref target="sec:glossary"></xref>.</t>
      	<t>Guaranteeing both physical-layer robustness and efficient usage of the radio resource has been in the core design of SATellite COMmunication (SATCOM) systems. The trade-off often resided in how much redundancy a system adds to cope with link impairments, without reducing the goodput when the channel quality is good. There is usually enough redundancy to guarantee a Quasi-Error Free transmission. The recovery time depends on the encoding block size. Considering for instance geostationary satellite system (GEO), physical or link layer erasure coding mechanisms recover transmission losses within a negligible delay compared to link delay. However, when retransmissions are triggered, this leads to a non-negligible additional delay in particular over GEO link. Further exploiting coding techniques at application or transport layers is an opportunity for releasing constraints on the physical layer and improving the performance of SATCOM systems.</t>
 	<t>The notations used in this document are based on the taxonomy document <xref target="RFC8406"> </xref>:<list style="symbols">
 		<t>Channel and link codings are gathered in the PHY layer coding and are out of the scope of this document.</t>
@@ -131,43 +132,10 @@
 	<t>We notice an active research activity on coding techniques and SATCOM. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of coding in these systems.</t>
 	<!-- <t>Reliability is an inherent part of the physical-layer and usually achieved by using coding techniques. Based on public information, coding does not seem to be widely used at higher layers.</t> -->
 	<!-- <t>This memo presents use-cases where network coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t> -->
-
-	<t>The glossary of this memo extends the glossary of the taxonomy document <xref target="RFC8406"> </xref> as follows:<list style="symbols">
-	<t>ACM : Adaptive Coding and Modulation;</t>
-	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical-layer;</t>
-        <t>CPE: Customer Premises Equipment;</t>
-        <t>COM: COMmunication;</t>
-	<t>DSL: Digital Subscriber Line;</t>
-        <t>DTN: Delay/Disruption Tolerant Network;</t>
-	<t>DVB: Digital Video Broadcasting;</t>
-	<t>E2E: End-to-end;</t>
-        <t>ETSI: European Telecommunications Standards Institute;</t>
-	<t>FEC: Forward Error Correction;</t>
-	<t>FLUTE: File Delivery over Unidirectional Transport;</t>
-	<t>IntraF: Intra-Flow Coding;</t>
-	<t>InterF: Inter-Flow Coding;</t>
-	<t>IoT: Internet of Things;</t>
-	<t>LTE: Long Term Evolution;</t> 
-	<t>MPC: Multi-Path Coding;</t>
-	<t>NC: Network Coding;</t>
-        <t>NFV: Network Function Virtualization;</t>
-	<t>NORM: NACK-Oriented Reliable Multicast;</t>
-        <t>PEP: Performance Enhancing Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
-	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g., related to synchronization);</t>
-	<t>QEF: Quasi-Error-Free;</t>        
-	<t>QoE: Quality-of-Experience;</t>
-        <t>QoS: Quality-of-Service;</t>
-	<t>SAT: SATellite; </t>
-        <!--<t>EPC: Evolved Packet Core;</t>-->
-        <t>SATCOM: generic term related to all kind of SATellite COMmunication systems;</t>
-	<t>SPC: Single-Path Coding;</t>
-	<t>VNF: Virtual Network Function.</t>
-	</list></t>	
 	
 	<!-- <section anchor="subsec:intro_requi" title="Requirements Language">
 	<t>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <xref target="RFC2119">RFC&nbsp;2119</xref>.</t>
 	</section> -->
-	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); it is not an IETF product and is not a standard.</t>
 	</section>
 
         <!-- ######################################################-->
@@ -447,6 +415,40 @@ C : where coding techniques could be introduced
         <!-- ######################################################--> 
         <!-- ######################################################--> 
 
+	<section anchor="sec:glossary" title="Glossary">
+		<t>The glossary of this memo extends the glossary of the taxonomy document <xref target="RFC8406"> </xref> as follows:<list style="symbols">
+	<t>ACM : Adaptive Coding and Modulation;</t>
+	<t>BBFRAME: Base-Band FRAME - satellite communication layer 2 encapsulation work as follows: (1) each layer 3 packet is encapsulated with a Generic Stream Encapsulation (GSE) mechanism, (2) GSE packets are gathered to create BBFRAMEs, (3) BBFRAMEs contain information related to how they have to be modulated (4) BBFRAMEs are forwarded to the physical-layer;</t>
+        <t>CPE: Customer Premises Equipment;</t>
+        <t>COM: COMmunication;</t>
+	<t>DSL: Digital Subscriber Line;</t>
+        <t>DTN: Delay/Disruption Tolerant Network;</t>
+	<t>DVB: Digital Video Broadcasting;</t>
+	<t>E2E: End-to-end;</t>
+        <t>ETSI: European Telecommunications Standards Institute;</t>
+	<t>FEC: Forward Error Correction;</t>
+	<t>FLUTE: File Delivery over Unidirectional Transport;</t>
+	<t>IntraF: Intra-Flow Coding;</t>
+	<t>InterF: Inter-Flow Coding;</t>
+	<t>IoT: Internet of Things;</t>
+	<t>LTE: Long Term Evolution;</t> 
+	<t>MPC: Multi-Path Coding;</t>
+	<t>NC: Network Coding;</t>
+        <t>NFV: Network Function Virtualization;</t>
+	<t>NORM: NACK-Oriented Reliable Multicast;</t>
+        <t>PEP: Performance Enhancing Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
+	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g., related to synchronization);</t>
+	<t>QEF: Quasi-Error-Free;</t>        
+	<t>QoE: Quality-of-Experience;</t>
+        <t>QoS: Quality-of-Service;</t>
+	<t>SAT: SATellite; </t>
+        <!--<t>EPC: Evolved Packet Core;</t>-->
+        <t>SATCOM: generic term related to all kind of SATellite COMmunication systems;</t>
+	<t>SPC: Single-Path Coding;</t>
+	<t>VNF: Virtual Network Function.</t>
+	</list></t>		
+	</section>
+	  
 	<section anchor="sec:acknowledgements" title="Acknowledgements">
 	<t>Many thanks to John Border, Stuart Card, Tomaso de Cola, Vincent Roca, Lloyd Wood and Marie-Jose Montpetit for their help in writing this document.</t>
 	</section>
