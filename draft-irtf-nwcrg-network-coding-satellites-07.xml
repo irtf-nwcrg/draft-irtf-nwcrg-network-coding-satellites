@@ -568,7 +568,7 @@ C : where coding techniques could be introduced
                     </author>
                     <date year="2017" />
                     </front>
-                    <seriesInfo name="International Journal on Satellite Communnications and Networking" value="vol. 36" />
+                    <seriesInfo name="International Journal on Satellite Communnications and Networking" value="vol. 36 - https://doi.org/10.1002/sat.1206" />
                 </reference>
                 <!-- <reference anchor="WANG05">
 		    <front>
@@ -691,7 +691,7 @@ C : where coding techniques could be introduced
                      </author>
                      <date month="June" year="2015"/>
                      </front>
-                     <seriesInfo name="Proceedings of the IEEE International Conference on Communications" value=""/>
+                     <seriesInfo name="Proceedings of the IEEE International Conference on Communications" value="http://dx.doi.org/10.1109/ICC.2015.7248441"/>
         	</reference>
                 
        	</references>
