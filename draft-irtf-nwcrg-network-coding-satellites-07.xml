@@ -153,7 +153,7 @@
         <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. In a multi-gateway system, some elements may be centralized and/or gathered: the relevance of one approach compared to another depends on the deployment scenario. More information on these discussions and a generic SATCOM ground segment architecture for bidirectional Internet access can be found in <xref target="SAT2017"></xref>.</t> 
         <t>Some functional blocks aggregate the traffic of multiple users.</t>
 
-	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system">
+	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system. More details can be found in DVB standard documents.">
         <artwork> 
 +--------------------------+ 
 | application servers      |
