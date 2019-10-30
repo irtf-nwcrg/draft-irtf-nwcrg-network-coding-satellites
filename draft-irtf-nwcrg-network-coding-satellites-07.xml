@@ -57,7 +57,7 @@
       </address>
     </author>
 
-    <date month="November" year="2019" />
+    <date month="October" year="2019" />
 
     <!-- If the month and year are both specified and are the current ones, xml2rfc will fill 
          in the current day for you. If only the current year is specified, xml2rfc will fill 
@@ -364,14 +364,14 @@ C : where coding techniques could be introduced
 	<t>This section proposes a few potential approaches to introduce and use coding techniques in SATCOM systems.</t>
 		
 	<section anchor="sec:deploy_pep" title="On the joint-use of coding techniques and congestion control in SATCOM systems">
-	<t>SATCOM systems typically feature Performance Enhancement Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEP usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulations. PEP contributes to mitigate congestion in a SATCOM systems. PEP could host coding mechanisms and thus support use-cases that have been discussed in this document.</t>
+	<t>SATCOM systems typically feature Performance Enhancing Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEPs usually split TCP end-to-end connections and forward TCP packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulations. PEP contributes to mitigate congestion in a SATCOM systems. PEP could host coding mechanisms and thus support use-cases that have been discussed in this document.</t>
 	<t>Deploying coding schemes at the TCP level in these equipment could be relevant and independent from the specific characteristics of a SATCOM link. This leads to research questions on the interaction between coding schemes and TCP congestion controls.</t>
 
 	</section>
 		
 	<section anchor="sec:deploy_coding" title="On the efficient usage of satellite resource">
 	<t>The recurrent trade-off in SATCOM systems remains: how much overhead from redundant reliability packets can be introduced to guarantee a better end-user QoE while optimizing capacity usage ? At which layer this supplementary coding could be added ?</t>
-	<t>This problem has been tackled in the past for physical-layer code, but there remains questions on how to adapt the overhead for, e.g., the quickly varying channel conditions use-case.</t>
+	<t>This problem has been tackled in the past for physical-layer code, but there remains questions on how to adapt the overhead for, e.g., the quickly varying channel conditions use-case where ACM may not be reacting quickly enough.</t>
 	</section>
 		
 	<section anchor="sec:deploy_nfv" title="Interaction with virtualized satellite gateways and terminals">
