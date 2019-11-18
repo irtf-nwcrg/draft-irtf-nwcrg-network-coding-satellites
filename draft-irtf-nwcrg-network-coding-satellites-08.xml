@@ -454,12 +454,12 @@ C : where coding techniques could be introduced
 		<?rfc include="reference.RFC.3135.xml"?> 
 		<?rfc include="reference.RFC.4838.xml"?> 
 		<!-- <?rfc include="reference.RFC.5050.xml"?> -->
-		<?rfc include="reference.RFC.5326.xml"?> 
+		<!-- <?rfc include="reference.RFC.5326.xml"?> -->
 		<?rfc include="reference.RFC.5740.xml"?> 
 		<!-- <?rfc include="reference.RFC.5865.xml"?> -->  
 		<!-- <?rfc include="reference.RFC.6816.xml"?> -->
 		<?rfc include="reference.RFC.6726.xml"?>
-        	<?rfc include="reference.I-D.ietf-tcpm-converters"?>
+        	<!-- <?rfc include="reference.I-D.ietf-tcpm-converters"?> -->
         	<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>
         	<?rfc include="reference.RFC.8406.xml"?>
         	<?rfc include="reference.I-D.vazquez-nfvrg-netcod-function-virtualization.xml"?>
