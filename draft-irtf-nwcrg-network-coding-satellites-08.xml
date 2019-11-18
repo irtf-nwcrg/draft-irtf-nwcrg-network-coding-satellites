@@ -126,7 +126,7 @@
         <!-- ######################################################-->
         
         <section anchor="sec:sat_topo" title="A note on satellite topology">
-        <t>There are multiple SATCOM systems, such as those dedicated to broadcasting TV or to IoT applications: depending on the purpose of the SATCOM system, ground segments are different. This section focuses on a satellite system that follows the ETSI DVB standards to provide broadband Internet access. The capacity that can be carried out by one satellite is higher than the capacity that one gateway can transmit: there are usually multiple gateways for one unique satellite platform.</t>
+        <t>There are multiple SATCOM systems, such as those dedicated to broadcasting TV or to IoT applications: depending on the purpose of the SATCOM system, the ground segments are different. This section focuses on a satellite system that follows the ETSI DVB standards to provide broadband Internet access. The capacity that is carried out by one satellite may be higher than the capacity that one single gateway can carry out: there are usually multiple gateways for one unique satellite platform.</t>
         <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. More information on a generic SATCOM ground segment architecture for bidirectional Internet access can be found in <xref target="SAT2017"></xref>.</t>
 
 	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system. More details can be found in DVB standard documents.">
@@ -182,11 +182,11 @@
         
         <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with network coding">
 
-        <t>This section details use-cases where network coding techniques could provide interesting features for SATCOM systems. Combination of the presented use-cases could also be relevant. In a multi-gateway SATCOM Internet access, the deployment opportunities for network coding are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
+        <t>This section details use-cases where network coding techniques could improve SATCOM systems.</t> 
 
        	<section anchor="subsec:two-way" title="Two-way relay channel mode">
 	<t>This use-case considers a two-way communication between end users, through a satellite link. <xref target="fig:two_way"></xref> proposes an illustration of this scenario.</t>
-        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a coding server. The coding server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. In the proposed example, a dedicated coding server is introduced. Its location could be changed depending on the deployment use-case. The network coding operations could also be done at the satellite level, although this would require lots of computational ressource on-board and may not be relevant with today's satellites.</t>
+        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a coding server. The coding server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. In the proposed example, a dedicated coding server is introduced (note that its location could be different for another deployment use-case). The network coding operations could also be done at the satellite level, although this would require lots of computational ressource on-board and may not be relevant with today's satellites.</t>
         <figure anchor="fig:two_way" title="Network architecture for two way relay channel with NC">
         <artwork>
 -X}-   : traffic from satellite terminal X to the server
@@ -261,9 +261,8 @@
 	</section>	
 
        	<section anchor="subsec:varying_wifi" title="Dealing with LAN losses">
-	<t>This use-case considers the usage of network coding to cope with cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user.</t>
+	<t>This use-case considers the usage of network coding to cope with cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user. In this use-case, adding network coding techniques could prevent the end-to-end retransmission from occuring.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_wifi-loss"></xref>.</t>
-	<t>In this use-case, adding network coding techniques could prevent the end-to-end retransmission from occuring.</t>
 
         <figure anchor="fig:varying_wifi-loss" title="Network architecture for dealing with LAN losses">
         <artwork>
@@ -281,8 +280,8 @@ C : where network coding techniques could be introduced
 	</section>
 	
        	<section anchor="subsec:varying" title="Dealing with varying channel conditions">
-	<t>This use-case considers the usage of network coding to cope with cases where channel condition can change in less than a second and the mechanisms that are exploited to adapt the physical-layer codes (Adaptative Coding and Modulation (ACM)) may not adapt the modulation and coding in time: remaining errors could be recovered with higher layer redundancy packets. Network coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
-	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. This use-case is mostly relevant when mobile users are considered or when the chosen band induces quick changes in channel condition (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding network coding is different.</t>
+	<t>This use-case considers the usage of network coding to cope with cases where channel condition change in less than a second and the mechanisms that are exploited to adapt the physical-layer codes (Adaptative Coding and Modulation (ACM)) may not adapt the modulation and coding in time: remaining errors could be recovered with higher layer redundancy packets. This use-case is mostly relevant when mobile users are considered or when the chosen band induces quick changes in channel condition (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding network coding is different.</t>
+	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>.</t>
 
         <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics">
         <artwork>
@@ -299,7 +298,7 @@ C : where network coding techniques could be introduced
 	</section>
 
        	<section anchor="subsec:gat_hand" title="Improving the gateway handovers">
-	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, if gateways are not properly synchronized or if the algorithm that is exploited to trigger gateway handovers shows a non negligible probability of missed detection, this may result in packet losses. During these critical phases, network coding can be added to improve the reliability of the transmission and allow a seamless gateway handover. Network coding could be applied at either the access gateway or the network function block. A potential control plane is in charge of taking the decision to change the communication gateway and the consequent routes.</t>
+	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, packet losses can occur if the gateways are not properly synchronized or if the algorithm that is exploited to trigger gateway handovers is not properly tuned. During these critical phases, network coding can be added to improve the reliability of the transmission and allow a seamless gateway handover.</t>
 	<t><xref target="fig:gat_hand"></xref> illustrates this use-case.</t>
 
         <figure anchor="fig:gat_hand" title="Network architecture for dealing with gateway handover schemes">
