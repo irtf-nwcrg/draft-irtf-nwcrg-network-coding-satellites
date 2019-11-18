@@ -272,7 +272,7 @@
 -{}- : bidirectional link
 -''- : Wi-Fi link
 C : where coding techniques could be introduced 
-		
+
 +----+    +---------+    +---+    +--------+    +-------+    +--------+
 |End |    |Satellite|    |SAT|    |Physical|    |Access |    |Network |
 |user|-''-|Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
@@ -281,7 +281,7 @@ C : where coding techniques could be introduced
         </artwork>
         </figure>
 	</section>
-		
+	
        	<section anchor="subsec:varying" title="Dealing with varying channel conditions">
 	<t>This use-case considers the usage of coding techniques to cope with cases where channel condition can change in less than a second and the mechanisms that are exploited to adapt the physical-layer codes (Adaptative Coding and Modulation (ACM)) may not adapt the modulation and coding in time: remaining errors could be recovered with higher layer redundancy packets. Coding may be applied on IP packets or on layer-2 proprietary format packets.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>. This use-case is mostly relevant when mobile users are considered or when the chosen band induces quick changes in channel condition (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding coding techniques is different.</t>
