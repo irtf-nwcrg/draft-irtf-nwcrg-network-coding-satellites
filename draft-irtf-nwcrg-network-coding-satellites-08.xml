@@ -184,7 +184,7 @@
         <section anchor="sec:use_cases" title="Use-cases for improving the SATCOM system performance with coding techniques">
 
         <t>This section details use-cases where coding techniques could provide interesting features for SATCOM systems. Combination of the presented use-cases could also be relevant.</t>
-        <t>It is worth noting that these use-cases mostly focus on the middleware and packetization UDP/IP of <xref target="fig:existing_network"></xref>. There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
+        <t>There are already lots of recovery mechanisms at the physical-layer in currently deployed systems while E2E source coding is done at the application level. In a multi-gateway SATCOM Internet access, the deployment opportunities are more relevant in specific SATCOM components such as the "network function" block or the "access gateway" of <xref target="fig:sat_gateway"></xref>.</t> 
 
        	<section anchor="subsec:two-way" title="Two-way relay channel mode">
 	<t>This use-case considers a two-way communication between end users, through a satellite link. <xref target="fig:two_way"></xref> proposes an illustration of this scenario.</t>
