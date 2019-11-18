@@ -172,7 +172,7 @@
           +----------+               +----------+ 
           |end user 2|               |end user 4|
           +----------+               +----------+
-	</artwork>
+        </artwork>
         </figure>
 
 	</section>
@@ -247,17 +247,17 @@
         <artwork>
 -{}- : bidirectional link
 
-                             +-----+    +----------------+
-                        +-{}-| SAT |-{}-| BACKBONE       |
-+------+    +------+    |    +-----+    | +------------+ | 
-| End  |-{}-| CPE  |-{}-|               | |CONCENTRATOR| |
-| User |    |      |    |    +-----+    | +------------+ |    +------------+
-+------+    +------+    |-{}-| DSL |-{}-|                |-{}-|Application |
-                        |    +-----+    |                |    |Server      |
-                        |               |                |    +------------+
-                        |    +-----+    |                |
-                        +-{}-| LTE |-{}-|                |
-                             +-----+    +----------------+
+                        +---+    +--------------+
+                   +-{}-|SAT|-{}-|BACKBONE      |
++----+    +---+    |    +---+    |+------------+| 
+|End |-{}-|CPE|-{}-|             ||CONCENTRATOR||
+|User|    +---+    |    +---+    |+------------+|    +-----------+
++----+             |-{}-|DSL|-{}-|              |-{}-|Application|
+                   |    +---+    |              |    |Server     |
+                   |             |              |    +-----------+
+                   |    +---+    |              | 
+                   +-{}-|LTE|-{}-+--------------+              
+                        +---+    
         </artwork>
         </figure>
 	</section>	
@@ -273,11 +273,11 @@
 -''- : Wi-Fi link
 C : where coding techniques could be introduced 
 		
-+---------+    +---------+    +---+    +--------+    +-------+    +--------+
-|         |    |Satellite|    |SAT|    |Physical|    |Access |    |Network |
-|End user |-''-|Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
-+---------+    +---------+    +---+    +--------+    +-------+    +--------+
-     C                       C            C           C 
++----+    +---------+    +---+    +--------+    +-------+    +--------+
+|End |    |Satellite|    |SAT|    |Physical|    |Access |    |Network |
+|user|-''-|Terminal |-{}-|   |-{}-|Gateway |-{}-|Gateway|-{}-|Function| 
++----+    +---------+    +---+    +--------+    +-------+    +--------+
+   C                       C            C           C 
         </artwork>
         </figure>
 	</section>
