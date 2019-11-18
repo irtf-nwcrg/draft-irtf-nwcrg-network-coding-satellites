@@ -99,13 +99,13 @@
 
 	<section anchor="sec:introduction" title="Introduction">
 	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); it is not an IETF product and is not a standard. A glossary is proposed in <xref target="sec:glossary"></xref>.</t>
-     	<t>Exploiting network coding techniques at application or transport layers is an opportunity for improving the end-to-end performance of SATCOM systems. Physical and link layers coding protection is usually sufficient to guarranty Quasi-Error Free, with a negligeable delay compared to the propagation time (e.g., with a GEO sat). When the physical and link layers coding fails, retransmissions add significant delays. Hence the use of FEC in upper layers can improve the quality of experience of end users.</t>
+     	<t>Exploiting network coding techniques at application or transport layers is an opportunity for improving the end-to-end performance of SATCOM systems. Physical and link layers coding protection is usually sufficient to guarranty Quasi-Error Free, with a negligeable delay compared to the propagation time (e.g., with a GEO sat). When the physical and link layers coding fails, retransmissions add significant delays. Hence the use of network coding in upper layers can improve the quality of experience of end users.</t>
+	<t>We notice an active research activity on network coding techniques above the network layer and SATCOM. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of network coding in these systems.</t>
 	<t>The notations used in this document are based on the taxonomy document <xref target="RFC8406"> </xref>:<list style="symbols">
 		<t>Channel and link codings are gathered in the PHY layer coding and are out of the scope of this document.</t>
 		<t>FEC (also called Application-Level FEC) operates in and above the network layer.</t>
 		<t>This document considers coding (or coding techniques or coding schemes) as a linear combination and not as a content coding (e.g., to compress a video flow).</t>
 	</list></t>
-	<t>We notice an active research activity on network coding techniques above the network layer and SATCOM. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of network coding in these systems.</t>
 		
 	<!-- <t>Reliability is an inherent part of the physical-layer and usually achieved by using coding techniques. Based on public information, coding does not seem to be widely used at higher layers.</t> -->
 	<!-- <t>This memo presents use-cases where network coding schemes could improve the overall performance of a SATCOM system (e.g. considering a more efficient usage of the satellite resource, delivery delay, delivery ratio).</t> -->
@@ -126,9 +126,8 @@
         <!-- ######################################################-->
         
         <section anchor="sec:sat_topo" title="A note on satellite topology">
-        <t>This section describes a satellite system that follows the ETSI DVB standards to provide broadband Internet access. A high-level description of a multi-gateway satellite network is provided. There are multiple SATCOM systems, such as those dedicated to broadcasting TV or to IoT applications: depending on the purpose of the SATCOM system, ground segments are specific. In this context, the increase of the available capacity that is carried out to end users and reliability requirements lead to multiple gateways for one unique satellite platform.</t>
-        <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. In a multi-gateway system, some elements may be centralized and/or gathered: the relevance of one approach compared to another depends on the deployment scenario. More information on these discussions and a generic SATCOM ground segment architecture for bidirectional Internet access can be found in <xref target="SAT2017"></xref>.</t> 
-        <t>Some functional blocks aggregate the traffic of multiple users.</t>
+        <t>There are multiple SATCOM systems, such as those dedicated to broadcasting TV or to IoT applications: depending on the purpose of the SATCOM system, ground segments are different. This section focuses on a satellite system that follows the ETSI DVB standards to provide broadband Internet access. The capacity that can be carried out by one satellite is higher than the capacity that one gateway can transmit: there are usually multiple gateways for one unique satellite platform.</t>
+        <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. More information on a generic SATCOM ground segment architecture for bidirectional Internet access can be found in <xref target="SAT2017"></xref>.</t>
 
 	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system. More details can be found in DVB standard documents.">
         <artwork> 
