@@ -91,7 +91,7 @@
         <!-- ######################################################--> 
 
     <abstract>
-    <t>This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). This document follows the taxonomy document <xref target="RFC8406"> </xref> and considers coding as a linear combination of packets that operate in and above the network layer. In this context, this memo details a multi-gateway satellite system to identify use-cases where network coding is relevant. As example, network coding operating in and above the network layer can be exploited to cope with residual losses or provide reliable multicast services. The objective is to contribute to a larger deployment of such techniques in SATCOM systems. This memo also identifies open research issues related to the deployment of network coding in SATCOM systems, such as the interaction between congestion control and network coding techniques.</t>
+    <t>This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). This document follows the taxonomy document <xref target="RFC8406"> </xref> and considers coding as a linear combination of packets that operate in and above the network layer. This memo details a multi-gateway satellite system and identifies use-cases where network coding is relevant. The scope of the document is network coding operating in and above the network layer. The objective is to contribute to a larger deployment of network coding techniques in SATCOM systems in places where it is not already exploited, e.g. at the link-layer. This memo also identifies open research issues related to the deployment of network coding in SATCOM systems.</t>
     </abstract>
   </front>
 
@@ -99,7 +99,7 @@
 
 	<section anchor="sec:introduction" title="Introduction">
 	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); it is not an IETF product and is not a standard. A glossary is proposed in <xref target="sec:glossary"></xref>.</t>
-     	<t>Exploiting network coding techniques at application or transport layers is an opportunity for improving the end-to-end performance of SATCOM systems. Physical- and link-layer coding protection is usually sufficient to guarranty Quasi-Error Free, with a negligible delay compared to the propagation time (e.g., with a GEO sat). When the physical and link layers coding fails, retransmissions add significant delays. Hence the use of network coding in upper layers can improve the quality of experience of end users.</t>
+     	<t>Exploiting network coding techniques at application- or transport-layer is an opportunity for improving the end-to-end performance of SATCOM systems. Physical- and link-layer coding protection is usually enough to provide Quasi-Error Free transmission. When the physical and link layers coding fails, retransmissions add significant delays. Hence the use of network coding in upper layers can improve the quality of experience of end users.</t>
 	<t>We notice an active research activity on network coding techniques above the network layer and SATCOM. That being said, not much has actually made it to industrial developments. In this context, this document aims at identifying opportunities for further usage of network coding in these systems.</t>
 	<t>The notations used in this document are based on the taxonomy document <xref target="RFC8406"> </xref>:<list style="symbols">
 		<t>Channel and link codings are gathered in the PHY layer coding and are out of the scope of this document.</t>
@@ -186,8 +186,8 @@
 
        	<section anchor="subsec:two-way" title="Two-way relay channel mode">
 	<t>This use-case considers a two-way communication between end users, through a satellite link. <xref target="fig:two_way"></xref> proposes an illustration of this scenario.</t>
-        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a coding server. The coding server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. In the proposed example, a dedicated coding server is introduced (note that its location could be different for another deployment use-case). The network coding operations could also be done at the satellite level, although this would require lots of computational ressource on-board and may not be relevant with today's satellites.</t>
-        <figure anchor="fig:two_way" title="Network architecture for two way relay channel with NC">
+        <t>Satellite terminal A sends a flow A and satellite terminal B sends a flow B to a coding server. The coding server sends a combination of both terminal flows. This results in non-negligible capacity savings and has been demonstrated <xref target="ASMS2010"></xref>. In the proposed example, a dedicated coding server is introduced (note that its location could be different for another deployment use-case). The network coding operations could also be done at the satellite level, although this would require lots of computational resource on-board and may not be relevant with today's satellites.</t>
+        <figure anchor="fig:two_way" title="Network architecture for two-way relay channel with NC">
         <artwork>
 -X}-   : traffic from satellite terminal X to the server
 ={X+Y= : traffic from X and Y combined sent from 
@@ -239,7 +239,7 @@
 
        	<section anchor="subsec:hybrid" title="Hybrid access">
 	<t>This use-case considers improving multiple path communications with network coding at the transport layer. We propose an illustration for this scenario in <xref target="fig:hyb_access"></xref>. This use-case is inspired from the Broadband Access via Integrated Terrestrial Satellite Systems (BATS) project and has been published as an ETSI Technical Report <xref target="ETSITR2017"></xref>.</t> 
-	<t>To cope with packet loss (due to either end-user mobility or physical-layer impairments), network coding could be introduced both at the CPE and at the concentrator. Apart from packet losses, other gains could be envisioned, such as a better tolerance to out-of-order packets which occur when exploited links exhibit high asymetry in terms of RTT. Depending on the ground architecture <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"></xref> <xref target="SAT2017"></xref>, some equipments might be hosting both SATCOM and cellular functions.</t>
+	<t>To cope with packet loss (due to either end-user mobility or physical-layer impairments), network coding could be introduced both at the CPE and at the concentrator. Apart from packet losses, other gains could be envisioned, such as a better tolerance to out-of-order packets which occur when exploited links exhibit high asymmetry in terms of RTT. Depending on the ground architecture <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"></xref> <xref target="SAT2017"></xref>, some equipment might be hosting both SATCOM and cellular functions.</t>
 
         <figure anchor="fig:hyb_access" title="Network architecture for an hybrid access using network coding">
         <artwork>
@@ -261,7 +261,7 @@
 	</section>	
 
        	<section anchor="subsec:varying_wifi" title="Dealing with LAN losses">
-	<t>This use-case considers the usage of network coding to cope with cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user. In this use-case, adding network coding techniques could prevent the end-to-end retransmission from occuring.</t>
+	<t>This use-case considers the usage of network coding to cope with cases where the end user connects to the satellite terminal with a Wi-Fi link that exhibits losses. In the case of encrypted end-to-end applications based on UDP, PEP cannot operate. The Wi-Fi losses result in an end-to-end retransmission that would harm the quality of experience of the end user. In this use-case, adding network coding techniques could prevent the end-to-end retransmission from occurring.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_wifi-loss"></xref>.</t>
 
         <figure anchor="fig:varying_wifi-loss" title="Network architecture for dealing with LAN losses">
@@ -280,7 +280,7 @@ C : where network coding techniques could be introduced
 	</section>
 	
        	<section anchor="subsec:varying" title="Dealing with varying channel conditions">
-	<t>This use-case considers the usage of network coding to cope with cases where channel condition change in less than a second and the mechanisms that are exploited to adapt the physical-layer codes (Adaptative Coding and Modulation (ACM)) may not adapt the modulation and coding in time: remaining errors could be recovered with higher layer redundancy packets. This use-case is mostly relevant when mobile users are considered or when the chosen band induces quick changes in channel condition (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding network coding is different.</t>
+	<t>This use-case considers the usage of network coding to cope with cases where channel condition change in less than a second and the mechanisms that are exploited to adapt the physical-layer codes (Adaptive Coding and Modulation (ACM)) may not adapt the modulation and coding in time: remaining errors could be recovered with higher layer redundancy packets. This use-case is mostly relevant when mobile users are considered or when the chosen band induces quick changes in channel condition (Q/V bands, Ka band, etc.). Depending on the use-case (e.g., very high frequency bands, mobile users) or depending on the deployment use-cases (e.g., performance of the network between each individual block), the relevance of adding network coding is different.</t>
 	<t>The architecture is recalled in <xref target="fig:varying_capa"></xref>.</t>
 
         <figure anchor="fig:varying_capa" title="Network architecture for dealing with varying link characteristics">
@@ -297,8 +297,8 @@ C : where network coding techniques could be introduced
         </figure>
 	</section>
 
-       	<section anchor="subsec:gat_hand" title="Improving the gateway handovers">
-	<t>This use-case considers the recovery of packets that may be lost during gateway handovers. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, packet losses can occur if the gateways are not properly synchronized or if the algorithm that is exploited to trigger gateway handovers is not properly tuned. During these critical phases, network coding can be added to improve the reliability of the transmission and allow a seamless gateway handover.</t>
+       	<section anchor="subsec:gat_hand" title="Improving the gateway handover">
+	<t>This use-case considers the recovery of packets that may be lost during gateway handover. Whether this is for off-loading one given equipment or because the transmission quality is not the same on each gateway, changing the transmission gateway may be relevant. However, packet losses can occur if the gateways are not properly synchronized or if the algorithm that is exploited to trigger gateway handover is not properly tuned. During these critical phases, network coding can be added to improve the reliability of the transmission and allow a seamless gateway handover.</t>
 	<t><xref target="fig:gat_hand"></xref> illustrates this use-case.</t>
 
         <figure anchor="fig:gat_hand" title="Network architecture for dealing with gateway handover schemes">
@@ -337,7 +337,7 @@ C : where network coding techniques could be introduced
 	<t>This section proposes a few potential approaches to introduce and use network coding in SATCOM systems.</t>
 		
 	<section anchor="sec:deploy_pep" title="On the joint-use of network coding and congestion control in SATCOM systems">
-	<t>SATCOM systems typically feature Performance Enhancing Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEPs usually split end-to-end connections and forward transport or application layer packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulations. PEP contributes to mitigate congestion in a SATCOM systems. PEP could host network coding mechanisms and thus support use-cases that have been discussed in this document.</t>
+	<t>SATCOM systems typically feature Performance Enhancing Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEPs usually split end-to-end connections and forward transport or application layer packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulation. PEP contributes to mitigate congestion in a SATCOM systems. PEP could host network coding mechanisms and thus support use-cases that have been discussed in this document.</t>
 	<t>Deploying network coding in the PEP could be relevant and independent from the specific characteristics of a SATCOM link. This leads to research questions on the interaction between network coding and congestion control.</t>
 
 	</section>
@@ -371,7 +371,7 @@ C : where network coding techniques could be introduced
         <!-- ######################################################-->      
         <section anchor="sec:conclu" title="Conclusion">
 
-        <t>This document discuses some opportunities to introduce network coding techniques at a wider scale in satellite telecommunications systems.</t>
+        <t>This document discusses some opportunities to introduce network coding techniques at a wider scale in satellite telecommunications systems.</t>
  
         <t>Even though this document focuses on satellite systems, it is worth pointing out that some scenarios proposed may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped to cellular networks as follows: the 'network function' block gathers some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this draft since they may be also relevant for cellular networks.</t>
        
