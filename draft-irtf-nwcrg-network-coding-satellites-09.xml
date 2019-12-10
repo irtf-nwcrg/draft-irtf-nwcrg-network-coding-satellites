@@ -232,7 +232,7 @@
         </artwork>
         </figure>
 
-	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (resp. Nj) gets lost at terminal A (resp. B), and terminal A (resp. B) returns a negative acknowledgment Li (resp. Lj), indicating that the packet is missing. Using NC, either the access gateway or the multicast server can include a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses.</t>
+	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (respectively Nj) gets lost at terminal A (respectively B), and terminal A (respectively B) returns a negative acknowledgment Li (respectively Lj), indicating that the packet is missing. Using NC, either the access gateway or the multicast server can include a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses.</t>
 	<t>This could also be achieved by using other multicast or broadcast systems, such as NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref>. Both NORM and FLUTE are limited to block coding, none of them supporting more flexible sliding window encoding schemes that allow decoding before receiving the whole block an added delay benefit <xref target="RFC8406"></xref>.</t> 
 
 	</section>	
