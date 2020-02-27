@@ -91,7 +91,7 @@
         <!-- ######################################################--> 
 
     <abstract>
-    <t>This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). It conforms to the directions found in the NWCRG taxonomy <xref target="RFC8406"> </xref>. Thus, the scope of the document is network coding as a linear combination of packets in and above the network layer. Physical and MAC layer coding are beyond the scope of the document. The draft focuses on a multi-gateway satellite system and identifies the use-cases where network coding provides significant performance improvements. The objective is to contribute to a larger deployment of network coding techniques in and above the network layer in satellite communication systems. These systems generally exploit PHY layer loss recovery mechanisms. The draft also identifies open research issues related to the deployment of network coding in satellite communication systems.</t>
+    <t>This document is the product of the Coding for Efficient Network Communications Research Group (NWCRG). It conforms to the directions found in the NWCRG taxonomy <xref target="RFC8406"> </xref>. Thus, the scope of the document is network coding as a linear combination of packets in and above the network layer. Physical and MAC layer coding are beyond the scope of the document. The document focuses on a multi-gateway satellite system and identifies the use-cases where network coding provides significant performance improvements. The objective is to contribute to a larger deployment of network coding techniques in and above the network layer in satellite communication systems. These systems generally exploit PHY layer loss recovery mechanisms. The document also identifies open research issues related to the deployment of network coding in satellite communication systems.</t>
     </abstract>
   </front>
 
@@ -99,7 +99,7 @@
 
 	<section anchor="sec:introduction" title="Introduction">
 	<t>This document is the product of and represents the collaborative work and consensus of the Coding for Efficient Network Communications Research Group (NWCRG); while it is not an IETF product and not a standard it intends to inform the SATCOM and Internet research communities about recent developments in Network Coding. A glossary is proposed in <xref target="sec:glossary"></xref> to clarify the terminology use throughout the document.</t>
-     	<t>As will be shown in this draft, the implementation of network coding techniques above the network layer of the ISO model, at application or transport layers, offers an opportunity for improving the end-to-end performance of SATCOM systems. While physical- and link-layer coding error protection is usually enough to provide Quasi-Error Free transmission thus minimizing packet loss, when the physical and link layers coding fail or that residual errors  create packet losses that greatly interfere with Internet protocols, retransmissions add significant delays because especially in geostationary system with over 0.7 second round-trip delays. Hence the use of network coding at the upper layers can improve the quality of service in SATCOM subnetworks and eventually favorably impact the experience of end users.</t>
+     	<t>As will be shown in this document, the implementation of network coding techniques above the network layer of the ISO model, at application or transport layers, offers an opportunity for improving the end-to-end performance of SATCOM systems. While physical- and link-layer coding error protection is usually enough to provide Quasi-Error Free transmission thus minimizing packet loss, when the physical and link layers coding fail or that residual errors create packet losses that greatly interfere with Internet protocols, retransmissions add significant delays, in particular in geostationary system with over 0.7 second round-trip delays. Hence the use of network coding at the upper layers can improve the quality of service in SATCOM subnetworks and eventually favorably impact the experience of end users.</t>
 	<t>While there is an active research Community working on network coding techniques above the network layer in general and in SATCOM in particular, not much of this work made it to commercial systems in the satellite industry. In this context, this document aims at identifying opportunities for further usage of network coding in commercial SATCOM networks.</t>
 	<t>The notation used in this document is based on the NWCRG taxonomy <xref target="RFC8406"> </xref>:<list style="symbols">
 		<t>Channel and link error correcting codes are considered part of the PHY layer error protection and are out of the scope of this document.</t>
@@ -126,7 +126,7 @@
         <!-- ######################################################-->
         
         <section anchor="sec:sat_topo" title="A Note on Satellite Networks Topology">
-        <t>There are multiple SATCOM systems, for example broadcast TV, point to point communication or IoT and monitoring. Therefore, depending on the purpose of the system, the associated ground segments architecture will be different. This section focuses on a satellite system that follows the ETSI DVB standards to provide broadband Internet access via ground-based gateways. One must note that the overall data capacity of one satellite may be higher than the capacity that one single gateway support. Hence, there are usually multiple gateways for one unique satellite platform.</t>
+        <t>There are multiple SATCOM systems, for example broadcast TV, point to point communication or IoT and monitoring. Therefore, depending on the purpose of the system, the associated ground segments architecture will be different. This section focuses on a satellite system that follows the ETSI DVB standards to provide broadband Internet access via ground-based gateways. One must note that the overall data capacity of one satellite may be higher than the capacity that one single gateway supports. Hence, there are usually multiple gateways for one unique satellite platform.</t>
         <t>In this context, <xref target="fig:sat_gateway"></xref> shows an example of a multi-gateway satellite system. More information on a generic SATCOM ground segment architecture for bidirectional Internet access can be found in <xref target="SAT2017"></xref>.</t>
 
 	<figure anchor="fig:sat_gateway" title="Data plane functions in a generic satellite multi-gateway system. More details can be found in DVB standard documents.">
@@ -211,7 +211,7 @@
 
        	<section anchor="subsec:rel-mul" title="Reliable Multicast">
 
-	<t>The use of multicast servers is one way to better utilize a satellite broadcast capabilities. Multicast is proposed in the SHINE ESA project <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref> <xref target="SHINE"> </xref>. This use-case considers adding redundancy to a multicast flow depending on what has been received by different end-users, resulting in non-negligible savings of the scarce SATCOM resources. This scenario is shown in <xref target="fig:rel_multi"></xref>.</t>
+	<t>The use of multicast servers is one way to better utilize satellite broadcast capabilities. Multicast is proposed in the SHINE ESA project <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref> <xref target="SHINE"> </xref>. This use-case considers adding redundancy to a multicast flow depending on what has been received by different end-users, resulting in non-negligible savings of the scarce SATCOM resources. This scenario is shown in <xref target="fig:rel_multi"></xref>.</t>
 
         <figure anchor="fig:rel_multi" title="Network Architecture for a Reliable Multicast using NC">
         <artwork>
@@ -233,7 +233,7 @@
         </figure>
 
 	<t>A multicast flow (M) is forwarded to both satellite terminals A and B. However packet Ni (respectively Nj) gets lost at terminal A (respectively B), and terminal A (respectively B) returns a negative acknowledgment Li (respectively Lj), indicating that the packet is missing. Using NC, either the access gateway or the multicast server can include a repair packet (rather than the individual Ni and Nj packets) in the multicast flow to let both terminals recover from losses.</t>
-	<t>This could also be achieved by using other multicast or broadcast systems, such as NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref>. Both NORM and FLUTE are limited to block coding, none of them supporting more flexible sliding window encoding schemes that allow decoding before receiving the whole block an added delay benefit <xref target="RFC8406"></xref>.</t> 
+	<t>This could also be achieved by using other multicast or broadcast systems, such as NACK-Oriented Reliable Multicast (NORM) <xref target="RFC5740"></xref> or File Delivery over Unidirectional Transport (FLUTE) <xref target ="RFC6726"></xref>. Both NORM and FLUTE are limited to block coding, none of them supporting more flexible sliding window encoding schemes that allow decoding before receiving the whole block an added delay benefit <xref target="RFC8406"></xref><xref target="RFC8681"></xref>.</t> 
 
 	</section>	
 
@@ -261,7 +261,7 @@
 	</section>	
 
        	<section anchor="subsec:varying_wifi" title="LAN Packet Losses">
-	<t>This use-case considers using network coding in the scenario where a lossy WIFI link is used to connect to the SATCOM network. When encrypted end-to-end applications based on UDP are used, a PEP cannot operate hence other mechanism need to be used. The WIFI packet losses will result in an end-to-end retransmission that will harm the end-user quality of experience and poorly utilize SATCOM bottleneck resource for non-revenue generating traffic. In this use-case, adding network coding techniques will prevent the end-to-end retransmission from occurring since the packet losses will be recovered.</t>
+	<t>This use-case considers using network coding in the scenario where a lossy WIFI link is used to connect to the SATCOM network. When encrypted end-to-end applications based on UDP are used, a PEP cannot operate hence other mechanism need to be used. The WIFI packet losses will result in an end-to-end retransmission that will harm the end-user quality of experience and poorly utilize SATCOM bottleneck resource for non-revenue generating traffic. In this use-case, adding network coding techniques will prevent the end-to-end retransmission from occurring since the packet losses would probably recovered.</t>
 	<t>The architecture is shown in <xref target="fig:varying_wifi-loss"></xref>.</t>
 
         <figure anchor="fig:varying_wifi-loss" title="Network Architecture for dealing with LAN Losses">
@@ -338,17 +338,17 @@ C : where network coding techniques could be introduced
 		
 	<section anchor="sec:deploy_pep" title="Joint-use of Network Coding and Congestion Control in SATCOM Systems">
 	<t>Many SATCOM systems typically use Performance Enhancing Proxy (PEP) <xref target="RFC3135">RFC&nbsp;3135</xref>. PEPs usually split end-to-end connections and forward transport or application layer packets to the satellite baseband gateway that deals with layer-2 and layer-1 encapsulation. PEPs contribute to mitigate congestion in a SATCOM systems by limiting the impact of long delays on Internet protocols. A PEP mechanism could also include network coding operation and thus support the use-cases that have been discussed in the <xref target="sec:use_cases"></xref> of this document.</t>
-	<t>Deploying network coding in the PEP could be relevant and be independent from the specifics of a SATCOM link. This however leads to research questions dealing with the potential interaction between network coding and congestion control.</t>
+	<t>Deploying network coding in the PEP could be relevant and be independent from the specifics of a SATCOM link. This however leads to research questions dealing with the potential interaction between network coding and congestion control. This is discussed in <xref target="I-D.irtf-nwcrg-coding-and-congestion"></xref></t>
 
 	</section>
 		
 	<section anchor="sec:deploy_coding" title="Efficient Use of Satellite Resources">
 	<t>There is a recurrent trade-off in SATCOM systems: how much overhead from redundant reliability packets can be introduced to guarantee a better end-user QoE while optimizing capacity usage ? At which layer this supplementary redundancy should be added ?</t>
-	<t>This problem has been tackled in the past by the deployment of physical-layer error-correction codes, but there remains questions on adapting the coding overhead and added delay for, e.g., the quickly varying channel conditions use-case where ACM may not be reacting quickly enough as was discussed on the previous section.</t>
+	<t>This problem has been tackled in the past by the deployment of physical-layer error-correction codes, but there remains questions on adapting the coding overhead and added delay for, e.g., the quickly varying channel conditions use-case where ACM may not be reacting quickly enough as was discussed in <xref target="subsec:varying"></xref>.</t>
 	</section>
 		
 	<section anchor="sec:deploy_nfv" title="Interaction with Virtualized Satellite Gateways and Terminals">
-	<t>In the emerging virtualized network infrastructure, network coding could be easily deployed as a VNF. The next generation of SATCOM ground segments will rely on a virtualized environment to integrate to terrestrial networks. This trend towards NFV is also central to 5G and next generation cellular networks, making this research applicable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the network coding VNF deployment in a virtualized environment has been presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>.</t>
+	<t>In the emerging virtualized network infrastructure, network coding could be easily deployed as a Virtual Network Functions (VNF). The next generation of SATCOM ground segments will rely on a virtualized environment to integrate to terrestrial networks. This trend towards Network Function Virtualization (NFV) is also central to 5G and next generation cellular networks, making this research applicable to other deployment scenarios <xref target="I-D.chin-nfvrg-cloud-5g-core-structure-yang"> </xref>. As one example, the network coding VNF deployment in a virtualized environment has been presented in <xref target="I-D.vazquez-nfvrg-netcod-function-virtualization"> </xref>.</t>
 	<t>A research challenge would be the optimization of the NFV service function chaining, considering a virtualized infrastructure and other SATCOM specific functions, in order to guarantee efficient radio-link usage and provide easy-to-deploy SATCOM services. Moreover, another challenge related to a virtualized SATCOM equipment is the management of limited buffered capacities in large gateways.</t>
 	</section>
 
@@ -373,7 +373,7 @@ C : where network coding techniques could be introduced
 
         <t>This document introduces some wide-scale network coding techniques opportunities in satellite telecommunications systems.</t>
  
-        <t>Even though this document focuses on satellite systems, it is worth pointing out that some scenarios proposed here may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped onto cellular networks as follows: the 'network function' block gathers some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this draft since they may also be relevant for cellular networks.</t>
+        <t>Even though this document focuses on satellite systems, it is worth pointing out that some scenarios proposed here may be relevant to other wireless telecommunication systems. As one example, the generic architecture proposed in <xref target="fig:sat_gateway"></xref> may be mapped onto cellular networks as follows: the 'network function' block gathers some of the functions of the Evolved Packet Core subsystem, while the 'access gateway' and 'physical gateway' blocks gather the same type of functions as the Universal Mobile Terrestrial Radio Access Network. This mapping extends the opportunities identified in this document since they may also be relevant for cellular networks.</t>
        
 	</section>
 
@@ -402,7 +402,7 @@ C : where network coding techniques could be introduced
 	<t>LTE: Long Term Evolution;</t> 
 	<t>MPC: Multi-Path Coding;</t>
 	<t>NC: Network Coding;</t>
-        <t>NFV: Network Function Virtualization;</t>
+        <t>NFV: Network Function Virtualization - concept of running software-defined network functions;</t>
 	<t>NORM: NACK-Oriented Reliable Multicast;</t>
         <t>PEP: Performance Enhancing Proxy <xref target="RFC3135"></xref> - a typical PEP for satellite communications include compression, caching and TCP acceleration;</t>
 	<t>PLFRAME: Physical Layer FRAME - modulated version of a BBFRAME with additional information (e.g., related to synchronization);</t>
@@ -413,7 +413,7 @@ C : where network coding techniques could be introduced
         <!--<t>EPC: Evolved Packet Core;</t>-->
         <t>SATCOM: generic term related to all kinds of SATellite COMmunication systems;</t>
 	<t>SPC: Single-Path Coding;</t>
-	<t>VNF: Virtual Network Function.</t>
+	<t>VNF: Virtual Network Function - implementation of a network function using software.</t>
 	</list></t>		
 	</section>
 	  
@@ -457,8 +457,10 @@ C : where network coding techniques could be introduced
 		<!-- <?rfc include="reference.RFC.6816.xml"?> -->
 		<?rfc include="reference.RFC.6726.xml"?>
         	<!-- <?rfc include="reference.I-D.ietf-tcpm-converters"?> -->
-        	<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>
+		<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>	
+		<?rfc include="reference.I-D.irtf-nwcrg-coding-and-congestion.xml"?>
         	<?rfc include="reference.RFC.8406.xml"?>
+        	<?rfc include="reference.RFC.8681.xml"?>
         	<?rfc include="reference.I-D.vazquez-nfvrg-netcod-function-virtualization.xml"?>
         	<!-- <?rfc include="reference.I-D.zinky-dtnrg-random-binary-fec-scheme.xml"?> -->
 		<!-- <?rfc include="reference.I-D.zinky-dtnrg-erasure-coding-extension.xml"?> -->
