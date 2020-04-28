@@ -428,7 +428,7 @@ C : where network coding techniques could be introduced
 	</section>
 
 	<section anchor="sec:ecurity" title="Security Considerations">
-	<t>Security considerations are inherent to any access network, and in particular SATCOM systems. The use of FEC or Network Coding in SATCOM also comes with risks (e.g., a single corrupted redundant packet may propagate to several flows when they are protected together in an Inter-Flow coding approach, see section <xref target="sec:use_cases"></xref>). However, this is not specific to the SATCOM use-case and this document does not further elaborate on it.</t>
+		<t>Security considerations are inherent to any access network, and in particular SATCOM systems. The use of FEC or Network Coding in SATCOM also comes with risks (e.g., a single corrupted redundant packet may propagate to several flows when they are protected together in an Inter-Flow coding approach, see section <xref target="sec:use_cases"></xref>). While this document does not further elaborate on this, the security considerations discussed in <xref target="RFC6363"></xref> apply.</t>
 	</section>
 	</middle>
 
@@ -457,6 +457,7 @@ C : where network coding techniques could be introduced
 		<?rfc include="reference.RFC.5740.xml"?> 
 		<!-- <?rfc include="reference.RFC.5865.xml"?> -->  
 		<!-- <?rfc include="reference.RFC.6816.xml"?> -->
+		<?rfc include="reference.RFC.6363.xml"?>
 		<?rfc include="reference.RFC.6726.xml"?>
         	<!-- <?rfc include="reference.I-D.ietf-tcpm-converters"?> -->
 		<?rfc include="reference.I-D.chin-nfvrg-cloud-5g-core-structure-yang.xml"?>	
