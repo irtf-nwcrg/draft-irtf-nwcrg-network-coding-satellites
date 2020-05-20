@@ -14,7 +14,7 @@ Expires: November 21, 2020                                          ENAC
 
 Abstract
 
-   This document is the product of the Coding for Efficient Network
+   This document is one product of the Coding for Efficient Network
    Communications Research Group (NWCRG).  It conforms to the directions
    found in the NWCRG taxonomy.
 
@@ -93,7 +93,7 @@ Table of Contents
 
 1.  Introduction
 
-   This document is the product of and represents the collaborative work
+   This document is one product of and represents the collaborative work
    and consensus of the Coding for Efficient Network Communications
    Research Group (NWCRG); while it is not an IETF product and not a
    standard it intends to inform the SATellite COMmunication (SATCOM)
@@ -102,10 +102,10 @@ Table of Contents
    terminology use throughout the document.
 
    As will be shown in this document, the implementation of network
-   coding techniques above the network layer of the ISO model, at
-   application or transport layers, offers an opportunity for improving
-   the end-to-end performance of SATCOM systems.  While physical- and
-   link-layer coding error protection is usually enough to provide
+   coding techniques above the network layer, at application or
+   transport layers (as described in [RFC1122], offers an opportunity
+   for improving the end-to-end performance of SATCOM systems.  While
+   physical- and link-layer coding error protection is usually enough to
 
 
 
@@ -114,15 +114,15 @@ Kuhn & Lochin           Expires November 21, 2020               [Page 2]
 Internet-Draft    Network coding for satellite systems          May 2020
 
 
-   Quasi-Error Free transmission thus minimizing packet loss, when
-   residual errors at those layers cause packet losses, retransmissions
-   add significant delays (in particular in geostationary system with
-   over 0.7 second round-trip delays).  Hence the use of network coding
-   at the upper layers can improve the quality of service in SATCOM
-   subnetworks and eventually favorably impact the experience of end
-   users.
+   provide Quasi-Error Free transmission thus minimizing packet loss,
+   when residual errors at those layers cause packet losses,
+   retransmissions add significant delays (in particular in
+   geostationary systems with over 0.7 second round-trip delays).  Hence
+   the use of network coding at the upper layers can improve the quality
+   of service in SATCOM subnetworks and eventually favorably impact the
+   experience of end users.
 
-   While there is an active research Community working on network coding
+   While there is an active research community working on network coding
    techniques above the network layer in general and in SATCOM in
    particular, not much of this work made it to commercial systems in
    the satellite industry.  In this context, this document aims at
@@ -149,19 +149,19 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
    There are multiple SATCOM systems, for example broadcast TV, point to
    point communication or IoT and monitoring.  Therefore, depending on
-   the purpose of the system, the associated ground segments
-   architecture will be different.  This section focuses on a satellite
-   system that follows the European Telecommunications Standards
-   Institute (ETSI) Digital Video Broadcasting (DVB) standards to
-   provide broadband Internet access via ground-based gateways
-   [ETSIEN2014].  One must note that the overall data capacity of one
-   satellite may be higher than the capacity that one single gateway
-   supports.  Hence, there are usually multiple gateways for one unique
-   satellite platform.
+   the purpose of the system, the associated ground segment architecture
+   will be different.  This section focuses on a satellite system that
+   follows the European Telecommunications Standards Institute (ETSI)
+   Digital Video Broadcasting (DVB) standards to provide broadband
+   Internet access via ground-based gateways [ETSIEN2014].  One must
+   note that the overall data capacity of one satellite may be higher
+   than the capacity that one single gateway supports.  Hence, there are
+   usually multiple gateways for one unique satellite platform.
 
    In this context, Figure 1 shows an example of a multi-gateway
    satellite system, where BBFRAME stands for Base-Band FRAME, PLFRAME
    for Physical Layer FRAME and PEP for Performance Enhancing Proxy.
+
 
 
 
@@ -245,8 +245,8 @@ Internet-Draft    Network coding for satellite systems          May 2020
    coding server is introduced (note that its location could be
    different based on deployment use-case).  The network coding
    operations could also be done at the satellite level, although this
-   would require a lot of computational resource on-board and may not be
-   supported by today's satellites.
+   would require a lot of computational resources on-board and may not
+   be supported by today's satellites.
 
    -X}-   : traffic from satellite terminal X to the server
    ={X+Y= : traffic from X and Y combined sent from
@@ -269,11 +269,11 @@ Internet-Draft    Network coding for satellite systems          May 2020
 3.2.  Reliable Multicast
 
    The use of multicast servers is one way to better utilize satellite
-   broadcast capabilities.  Multicast is proposed in the SHINE ESA
-   project [I-D.vazquez-nfvrg-netcod-function-virtualization] [SHINE].
-   This use-case considers adding redundancy to a multicast flow
-   depending on what has been received by different end-users, resulting
-
+   broadcast capabilities.  As one example satellite-based multicast is
+   proposed in the SHINE ESA project
+   [I-D.vazquez-nfvrg-netcod-function-virtualization] [SHINE].  This
+   use-case considers adding redundancy to a multicast flow depending on
+   what has been received by different end-users, resulting in non-
 
 
 
@@ -282,8 +282,8 @@ Kuhn & Lochin           Expires November 21, 2020               [Page 5]
 Internet-Draft    Network coding for satellite systems          May 2020
 
 
-   in non-negligible savings of the scarce SATCOM resources.  This
-   scenario is shown in Figure 3.
+   negligible savings of the scarce SATCOM resources.  This scenario is
+   shown in Figure 3.
 
    -Li}- : packet indicating the loss of packet i of a multicast flow M
    ={M== : multicast flow including the missing packets
@@ -329,7 +329,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
    published as an ETSI Technical Report [ETSITR2017].
 
    To cope with packet loss (due to either end-user mobility or
-   physical-layer residual errors), network coding can be introduced
+   physical-layer residual errors), network coding can be introduced.
 
 
 
@@ -338,11 +338,12 @@ Kuhn & Lochin           Expires November 21, 2020               [Page 6]
 Internet-Draft    Network coding for satellite systems          May 2020
 
 
-   both at the Customer Premises Equipment (CPE) and at the
-   concentrator.  Apart from packet losses, other gains from this
-   approach include a better tolerance to out-of-order packet delivery
-   which occur when exploited links exhibit high asymmetry in terms of
-   Round-Trip Time (RTT).  Depending on the ground architecture
+   Depending on the protocol, network coding could be applied at each of
+   the Customer Premises Equipment (CPE) and at the concentrator or
+   both.  Apart from packet losses, other gains from this approach
+   include a better tolerance to out-of-order packet delivery which
+   occur when exploited links exhibit high asymmetry in terms of Round-
+   Trip Time (RTT).  Depending on the ground architecture
    [I-D.chin-nfvrg-cloud-5g-core-structure-yang] [SAT2017], some ground
    equipment might be hosting both SATCOM and cellular network
    functionality.
@@ -375,10 +376,9 @@ Internet-Draft    Network coding for satellite systems          May 2020
    experience and poorly utilize SATCOM bottleneck resource for non-
    revenue generating traffic.  In this use-case, adding network coding
    techniques will prevent the end-to-end retransmission from occurring
-   since the packet losses would probably recovered.
+   since the packet losses would probably be recovered.
 
    The architecture is shown in Figure 5.
-
 
 
 
@@ -402,7 +402,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
    |End |    |Sat.    |    |SAT|    |Phy    |    |Access |    |Network |
    |user|-''-|Terminal|-{}-|   |-{}-|Gateway|-{}-|Gateway|-{}-|Function|
    +----+    +--------+    +---+    +-------+    +-------+    +--------+
-      C                      C           C           C
+      C          C                                  C            C
 
         Figure 5: Network Architecture for dealing with LAN Losses
 
@@ -510,25 +510,28 @@ Internet-Draft    Network coding for satellite systems          May 2020
    independent from the specifics of a SATCOM link.  This however leads
    to research questions dealing with the potential interaction between
    network coding and congestion control.  This is discussed in
-   [I-D.irtf-nwcrg-coding-and-congestion]
+   [I-D.irtf-nwcrg-coding-and-congestion].
 
 4.2.  Efficient Use of Satellite Resources
 
    There is a recurrent trade-off in SATCOM systems: how much overhead
    from redundant reliability packets can be introduced to guarantee a
-   better end-user QoE while optimizing capacity usage ? At which layer
-   this supplementary redundancy should be added ?
+   better end-user QoE while optimizing capacity usage?  At which layer
+   this supplementary redundancy should be added?
 
    This problem has been tackled in the past by the deployment of
    physical-layer error-correction codes, but there remains questions on
    adapting the coding overhead and added delay for, e.g., the quickly
    varying channel conditions use-case where ACM may not be reacting
-   quickly enough as was discussed in Section 3.5.
+   quickly enough as was discussed in Section 3.5.  The higher layer
+   with network coding does not react more quickly than the physical
+   layer, but may operate over a packet-based time window that is larger
+   than the physical one.
 
 4.3.  Interaction with Virtualized Satellite Gateways and Terminals
 
    In the emerging virtualized network infrastructure, network coding
-   could be easily deployed as a Virtual Network Functions (VNF).  The
+   could be easily deployed as Virtual Network Functions (VNF).  The
    next generation of SATCOM ground segments will rely on a virtualized
    environment to integrate to terrestrial networks.  This trend towards
    Network Function Virtualization (NFV) is also central to 5G and next
@@ -551,9 +554,6 @@ Internet-Draft    Network coding for satellite systems          May 2020
    can be a challenge.  Reliable end-to-end (E2E) communications over
    such paths must cope with very long delays and frequent link
    disruptions; indeed, E2E connectivity may be available only
-   intermittently.  Delay/Disruption Tolerant Networking (DTN) [RFC4838]
-   is a solution to enable reliable internetworking space communications
-   where both standard ad-hoc routing and E2E Internet protocols cannot
 
 
 
@@ -562,12 +562,15 @@ Kuhn & Lochin           Expires November 21, 2020              [Page 10]
 Internet-Draft    Network coding for satellite systems          May 2020
 
 
+   intermittently.  Delay/Disruption Tolerant Networking (DTN) [RFC4838]
+   is a solution to enable reliable internetworking space communications
+   where both standard ad-hoc routing and E2E Internet protocols cannot
    be used.  Moreover, DTN can also be seen as an alternative solution
    to transfer data between a central PEP and a remote PEP.
 
    Network Coding enables E2E reliable communications over a DTN with
    potential adaptive re-encoding, as proposed in [THAI15].  Here, the
-   use-cases proposed in Section 3.5 would legitimize the usage of
+   use-cases proposed in Section 3.5 would encourage the usage of
    network coding within the DTN stack to improve the physical channel
    utilization and minimize the effects of the E2E transmission delays.
    In this context, the use of packet erasure coding techniques inside a
@@ -578,7 +581,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
 5.  Conclusion
 
-   This document introduces some wide-scale network coding techniques
+   This document introduces some wide-scale network coding technique
    opportunities in satellite telecommunications systems.
 
    Even though this document focuses on satellite systems, it is worth
@@ -608,15 +611,14 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
    o  CPE: Customer Premises Equipment;
 
-   o  COM: COMmunication;
-
-
 
 
 Kuhn & Lochin           Expires November 21, 2020              [Page 11]
 
 Internet-Draft    Network coding for satellite systems          May 2020
 
+
+   o  COM: COMmunication;
 
    o  DSL: Digital Subscriber Line;
 
@@ -630,7 +632,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
    o  FEC: Forward Erasure Correction;
 
-   o  FLUTE: File Delivery over Unidirectional Transport;
+   o  FLUTE: File Delivery over Unidirectional Transport [RFC6726];
 
    o  IntraF: Intra-Flow Coding;
 
@@ -647,7 +649,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
    o  NFV: Network Function Virtualization - concept of running
       software-defined network functions;
 
-   o  NORM: NACK-Oriented Reliable Multicast;
+   o  NORM: NACK-Oriented Reliable Multicast [RFC5740];
 
    o  PEP: Performance Enhancing Proxy [RFC3135] - a typical PEP for
       satellite communications include compression, caching and TCP
@@ -664,8 +666,6 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
    o  RTT: Round-Trip Time;
 
-   o  SAT: SATellite;
-
 
 
 
@@ -673,6 +673,8 @@ Kuhn & Lochin           Expires November 21, 2020              [Page 12]
 
 Internet-Draft    Network coding for satellite systems          May 2020
 
+
+   o  SAT: SATellite;
 
    o  SATCOM: generic term related to all kinds of SATellite
       COMmunication systems;
@@ -723,8 +725,6 @@ Internet-Draft    Network coding for satellite systems          May 2020
 
 
 
-
-
 Kuhn & Lochin           Expires November 21, 2020              [Page 13]
 
 Internet-Draft    Network coding for satellite systems          May 2020
@@ -751,6 +751,11 @@ Internet-Draft    Network coding for satellite systems          May 2020
               nfvrg-netcod-function-virtualization-02 (work in
               progress), November 2017.
 
+   [RFC1122]  Braden, R., Ed., "Requirements for Internet Hosts -
+              Communication Layers", STD 3, RFC 1122,
+              DOI 10.17487/RFC1122, October 1989,
+              <https://www.rfc-editor.org/info/rfc1122>.
+
    [RFC3135]  Border, J., Kojo, M., Griner, J., Montenegro, G., and Z.
               Shelby, "Performance Enhancing Proxies Intended to
               Mitigate Link-Related Degradations", RFC 3135,
@@ -772,11 +777,6 @@ Internet-Draft    Network coding for satellite systems          May 2020
               DOI 10.17487/RFC6363, October 2011,
               <https://www.rfc-editor.org/info/rfc6363>.
 
-   [RFC6726]  Paila, T., Walsh, R., Luby, M., Roca, V., and R. Lehtonen,
-              "FLUTE - File Delivery over Unidirectional Transport",
-              RFC 6726, DOI 10.17487/RFC6726, November 2012,
-              <https://www.rfc-editor.org/info/rfc6726>.
-
 
 
 
@@ -785,6 +785,11 @@ Kuhn & Lochin           Expires November 21, 2020              [Page 14]
 
 Internet-Draft    Network coding for satellite systems          May 2020
 
+
+   [RFC6726]  Paila, T., Walsh, R., Luby, M., Roca, V., and R. Lehtonen,
+              "FLUTE - File Delivery over Unidirectional Transport",
+              RFC 6726, DOI 10.17487/RFC6726, November 2012,
+              <https://www.rfc-editor.org/info/rfc6726>.
 
    [RFC8406]  Adamson, B., Adjih, C., Bilbao, J., Firoiu, V., Fitzek,
               F., Ghanem, S., Lochin, E., Masucci, A., Montpetit, M-J.,
@@ -826,6 +831,17 @@ Authors' Addresses
    Email: nicolas.kuhn@cnes.fr
 
 
+
+
+
+
+
+
+Kuhn & Lochin           Expires November 21, 2020              [Page 15]
+
+Internet-Draft    Network coding for satellite systems          May 2020
+
+
    Emmanuel Lochin (editor)
    ENAC
    10 Avenue Edouard Belin
@@ -837,4 +853,44 @@ Authors' Addresses
 
 
 
-Kuhn & Lochin           Expires November 21, 2020              [Page 15]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kuhn & Lochin           Expires November 21, 2020              [Page 16]
