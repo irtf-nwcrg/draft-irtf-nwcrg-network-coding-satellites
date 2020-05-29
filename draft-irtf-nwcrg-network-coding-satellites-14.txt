@@ -314,7 +314,7 @@ Internet-Draft    Network coding for satellite systems          May 2020
    This could also be achieved by using other multicast or broadcast
    systems, such as NACK-Oriented Reliable Multicast (NORM) [RFC5740] or
    File Delivery over Unidirectional Transport (FLUTE) [RFC6726].  Both
-   NORM and FLUTE are limited to block coding, none of them supporting
+   NORM and FLUTE are limited to block coding; neither of them support
    more flexible sliding window encoding schemes that allow decoding
    before receiving the whole block an added delay benefit
    [RFC8406][RFC8681].
